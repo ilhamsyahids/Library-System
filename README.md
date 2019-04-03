@@ -9,7 +9,7 @@ Berisi tipe bentukan 'Peminjaman'
 
 ## Penjelasan singkat unit fitur
 **uTambahJumlahBuku**
-Berisi fungsi 'tambah_jumlah_buku(<daftar buku>)', fitur F10
+Berisi fungsi `tambah_jumlah_buku(<daftar buku>)`, fitur F10
 
 **uRiwayat**
-Berisi fungsi 'riwayat(<daftar peminjaman>, <daftar buku>)', fitur F11
+Berisi fungsi `riwayat(<daftar peminjaman>, <daftar buku>)`, fitur F11
