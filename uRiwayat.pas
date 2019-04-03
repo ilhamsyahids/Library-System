@@ -8,8 +8,8 @@ interface
     
 uses
     SysUtils,
-    uPeminjaman,
-    uBuku;
+    uTipeData,
+    uCariBuku;
 
 procedure riwayat (array_peminjaman : array of Peminjaman;
                     array_buku : array of Buku);

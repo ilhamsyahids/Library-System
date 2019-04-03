@@ -6,7 +6,8 @@ unit uTambahJumlahBuku;
 { KAMUS }
 interface
 uses
-    uBuku;
+    uTipeData,
+    uCariBuku;
 
 procedure tambah_jumlah_buku (var array_buku : array of Buku);
 
