@@ -11,13 +11,13 @@ uses
     uTipeData,
     uCariBuku;
 
-procedure riwayat (array_peminjaman : array of Peminjaman;
-                    array_buku : array of Buku);
+procedure riwayat (array_peminjaman : Arr_Peminjaman;
+                    array_buku : Arr_Buku);
 
 { ALGORITMA }
 implementation    
-procedure riwayat (array_peminjaman : array of Peminjaman;
-                    array_buku : array of Buku);
+procedure riwayat (array_peminjaman : Arr_Peminjaman;
+                    array_buku : Arr_Buku);
 { Menampilkan riwayat peminjaman dari user tertentu
   variabel array_buku diisi dengan daftar buku pada program utama
   variabel array_peminjaman diisi dengan daftar peminjaman pada program utama}

@@ -9,11 +9,11 @@ uses
     uTipeData,
     uCariBuku;
 
-procedure tambah_jumlah_buku (var array_buku : array of Buku);
+procedure tambah_jumlah_buku (var array_buku : Arr_Buku);
 
 { ALGORITMA }
 implementation
-procedure tambah_jumlah_buku (var array_buku : array of Buku);
+procedure tambah_jumlah_buku (var array_buku : Arr_Buku);
 { Melakukan prosedur penambahan buku
   variabel array_buku diisi dengan daftar buku pada program utama. }
 var
@@ -32,6 +32,13 @@ begin
     buku_yang_ditemukan := cari_buku_dengan_id(id, array_buku, index);
     buku_yang_ditemukan.jumlah_buku := buku_yang_ditemukan.jumlah_buku + tambahan;
     array_buku[index] := buku_yang_ditemukan;
+
+    // Blok output
+    writeln('');
+    write('Pembaharuan jumlah buku berhasil dilakukan, total buku ');
+    write(buku_yang_ditemukan.judul_buku);
+    write(' di perpustakaan menjadi ');
+    writeln(buku_yang_ditemukan.jumlah_buku);
 end;    
 
 end.

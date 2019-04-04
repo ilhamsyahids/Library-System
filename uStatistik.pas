@@ -8,11 +8,11 @@ interface
 uses
     uTipeData;
 
-procedure statistik(array_user : array of User; array_buku : array of Buku);
+procedure statistik(array_user : Arr_User; array_buku : Arr_Buku);
 
 { ALGORITMA }
 implementation
-procedure statistik(array_user : array of User; array_buku : array of Buku);
+procedure statistik(array_user : Arr_User; array_buku : Arr_Buku);
 { Menampilkan statistik user dan buku berupa jumlah entri tiap kategori, serta totalnya 
   variabel array_user diisi dengan daftar pengguna pada program utama,
   variabel array_buku diisi dengan daftar buku pada program utama}
@@ -48,23 +48,23 @@ begin
     begin
         if (array_buku[i].kategori = sastra) then
         begin
-            N_sastra := N_sastra + 1;
+            N_sastra := N_sastra + array_buku[i].jumlah_buku;
         end
         else if (array_buku[i].kategori = sains) then
         begin
-            N_sains := N_sains + 1;
+            N_sains := N_sains + array_buku[i].jumlah_buku;
         end
         else if (array_buku[i].kategori = manga) then
         begin
-            N_manga := N_manga + 1;
+            N_manga := N_manga + array_buku[i].jumlah_buku;
         end
         else if (array_buku[i].kategori = sejarah) then
         begin
-            N_sejarah := N_sejarah + 1;
+            N_sejarah := N_sejarah + array_buku[i].jumlah_buku;
         end
         else { array_user[i].kategori = programming }
         begin
-            N_programming := N_programming + 1;
+            N_programming := N_programming + array_buku[i].jumlah_buku;
         end;
     end;
 
@@ -89,7 +89,7 @@ begin
     write('programming | ');
     writeln(N_programming);
     write('Total | ');
-    writeln(N_buku);
+    writeln(N_sastra + N_sains + N_manga + N_sejarah + N_programming);
 
 end;
     

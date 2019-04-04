@@ -26,6 +26,8 @@ type
         Kategori : Kategori;
     end;
 
+    Arr_Buku = array of Buku;
+
     { Bentukan pengguna }
     Role = (
         Pengunjung,
@@ -39,6 +41,8 @@ type
         Password : string;
         Role : Role;
     end;
+
+    Arr_User = array of User;
 
     { Bentukan Peminjaman }
     Status_Pengembalian = (
@@ -54,6 +58,8 @@ type
         Status_Pengembalian : Status_Pengembalian;
     end;
 
+    Arr_Peminjaman = array of Peminjaman;
+
     { Bentukan Pengembalian }
     Pengembalian = record
         Username : string;
@@ -61,12 +67,16 @@ type
         Tanggal_Pengembalian : TDateTime;
     end;
 
+    Arr_Pengembalian = array of Pengembalian;
+
     { Bentukan Laporan Hilang }
     Laporan_Buku_Hilang = record
         Username : string;
         ID_Buku_Hilang : integer;
         Tanggal_Laporan : TDateTime;
     end;
+
+    Arr_Laporan_Buku_Hilang = array of Laporan_Buku_Hilang;
 
 implementation
     

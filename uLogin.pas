@@ -6,11 +6,11 @@ unit uLogin;
 // Kamus
 interface
     uses uTipeData;
-    procedure login(array_user : array of User );
+    procedure login(array_user : Arr_User );
 
 // Algoritma
 implementation
-    procedure login(array_user : array of User);
+    procedure login(array_user : Arr_User);
     // Meminta authorization berupa username dan password dari pengakses
     // variabel array_user diisi dengan daftar user pada program utama
 

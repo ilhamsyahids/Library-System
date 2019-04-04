@@ -8,12 +8,12 @@ interface
 uses
     uTipeData;
 
-function cari_buku_dengan_id (id : integer; array_buku : array of Buku; var index : integer) : Buku;
-function cari_buku_dengan_id (id : integer; array_buku : array of Buku) : Buku;
+function cari_buku_dengan_id (id : integer; array_buku : Arr_Buku; var index : integer) : Buku;
+function cari_buku_dengan_id (id : integer; array_buku : Arr_Buku) : Buku;
 
 { ALGORITMA }
 implementation
-function cari_buku_dengan_id (id : integer; array_buku : array of Buku; var index : integer) : Buku;
+function cari_buku_dengan_id (id : integer; array_buku : Arr_Buku; var index : integer) : Buku;
 { Mencari buku dengan id_buku 'id' pada daftar buku 'array_buku', serta mengoutput index dari buku yang ditemukan }
 var
     N, i : integer;
@@ -40,7 +40,7 @@ begin
     cari_buku_dengan_id := array_buku[index];
 end;
 
-function cari_buku_dengan_id (id : integer; array_buku : array of Buku) : Buku;
+function cari_buku_dengan_id (id : integer; array_buku : Arr_Buku) : Buku;
 { Mencari buku dengan id_buku 'id' pada daftar buku 'array_buku', tanpa mengoutput index dari buku yang ditemukan }
 var index : integer;
 begin
