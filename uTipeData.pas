@@ -4,9 +4,6 @@ unit uTipeData;
 
 interface
 
-uses
-    SysUtils;
-
 { KAMUS }
 type
     { Bentukan Buku }
@@ -78,6 +75,11 @@ type
 
     Arr_Laporan_Buku_Hilang = array of Laporan_Buku_Hilang;
 
+    // Tipe Array 
+    Arr_String = array of String;
+    Arr_Integer = array of Integer;
+    Arr_Boolean = array of Boolean;
+    
 implementation
     
 end.
