@@ -8,6 +8,7 @@ interface
     
 uses
     uTipeData,
+    uTanggal,
     uCariBuku;
 
 procedure riwayat (array_peminjaman : Arr_Peminjaman;
@@ -34,7 +35,7 @@ begin
     begin
         if (array_peminjaman[i].username = username) then
         begin
-            write(FormatDateTime('DD/MM/YYYY', array_peminjaman[i].tanggal_peminjaman));
+            write(TanggalToString(array_peminjaman[i].tanggal_peminjaman));
             write(' | ');
             write(array_peminjaman[i].id_buku);
             write(' | ');

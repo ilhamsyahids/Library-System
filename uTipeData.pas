@@ -4,8 +4,11 @@ unit uTipeData;
 
 interface
 
+uses uTanggal;
+
 { KAMUS }
 type
+
     { Bentukan Buku }
     Kategori = (
         Sastra,
@@ -50,8 +53,8 @@ type
     Peminjaman = record
         Username : string;
         ID_Buku : integer;
-        Tanggal_Peminjaman : TDateTime;
-        Tanggal_Batas_Pengembalian : TDateTime;
+        Tanggal_Peminjaman : Tanggal;
+        Tanggal_Batas_Pengembalian : Tanggal;
         Status_Pengembalian : Status_Pengembalian;
     end;
 
@@ -61,7 +64,7 @@ type
     Pengembalian = record
         Username : string;
         ID_Buku : integer;
-        Tanggal_Pengembalian : TDateTime;
+        Tanggal_Pengembalian : Tanggal;
     end;
 
     Arr_Pengembalian = array of Pengembalian;
@@ -70,7 +73,7 @@ type
     Laporan_Buku_Hilang = record
         Username : string;
         ID_Buku_Hilang : integer;
-        Tanggal_Laporan : TDateTime;
+        Tanggal_Laporan : Tanggal;
     end;
 
     Arr_Laporan_Buku_Hilang = array of Laporan_Buku_Hilang;
