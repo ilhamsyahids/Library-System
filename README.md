@@ -2,8 +2,14 @@
 Sistem manajemen perpustakaan dengan bahasa Pascal
 
 ## Penjelasan singkat unit fitur
+**uRegister**
+Berisi fungsi `register(<daftar user>)`, fitur F01
+
 **uLogin**
 Berisi fungsi `login(<daftar user>)`, fitur F02
+
+**uCariBukuKategori**
+Berisi fungsi `cari(<daftar buku>)`, fitur F03
 
 **uTambahJumlahBuku**
 Berisi fungsi `tambah_jumlah_buku(<daftar buku>)`, fitur F10
