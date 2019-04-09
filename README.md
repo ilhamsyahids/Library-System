@@ -8,7 +8,7 @@ Berisi fungsi `register(<daftar user>)`, fitur F01
 **uLogin**
 Berisi fungsi `login(<daftar user>)`, fitur F02
 
-**uCariBukuKategori**
+**uCari**
 Berisi fungsi `cari(<daftar buku>)`, fitur F03
 
 **uTambahJumlahBuku**
