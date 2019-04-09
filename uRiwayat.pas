@@ -7,7 +7,6 @@ unit uRiwayat;
 interface
     
 uses
-    SysUtils,
     uTipeData,
     uCariBuku;
 
