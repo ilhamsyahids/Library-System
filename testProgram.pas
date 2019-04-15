@@ -72,5 +72,4 @@ begin
     array_peminjaman[3].username := 'ozer0532';
     array_peminjaman[3].id_buku := 0532;
     array_peminjaman[3].tanggal_peminjaman := StringToTanggal('15/03/2019');
-
 end.

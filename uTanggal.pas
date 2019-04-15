@@ -14,7 +14,111 @@ function StringToTanggal (input : String) : Tanggal;
 
 function TanggalToString (input : Tanggal) : String;
 
+function TambahHari (tgl : Tanggal; tambahan : Integer) : Tanggal;
+
 implementation
+
+function IsKhabisat (tahun : Integer) : Boolean;
+begin
+    IsKhabisat := ((tahun mod 400 = 0) or (tahun mod 100 <> 0)) and (tahun = 0);
+end;
+
+function SumTanggalBulan (b : Integer; tahunKhabisat : Boolean) : Integer;
+var
+    add : Integer;
+    Bulan : Integer;
+begin
+    add := 0;
+    Bulan := b;
+    if (Bulan = 12) then
+    begin
+        Bulan := 03;
+        add := add + 275;
+    end
+    else if (Bulan = 11) then
+    begin
+        Bulan := 03;
+        add := add + 245;
+    end
+    else if (Bulan = 10) then
+    begin
+        Bulan := 03;
+        add := add + 214;
+    end
+    else if (Bulan = 09) then
+    begin
+        Bulan := 03;
+        add := add + 184;
+    end
+    else if (Bulan = 08) then
+    begin
+        Bulan := 03;
+        add := add + 153;
+    end
+    else if (Bulan = 07) then
+    begin
+        Bulan := 03;
+        add := add + 122;
+    end
+    else if (Bulan = 06) then
+    begin
+        Bulan := 03;
+        add := add + 92;
+    end
+    else if (Bulan = 05) then
+    begin
+        Bulan := 03;
+        add := add + 61;
+    end
+    else if (Bulan = 04) then
+    begin
+        Bulan := 03;
+        add := add + 31;
+    end;
+    if (Bulan = 03) then
+    begin
+        Bulan := 02;
+        if (tahunKhabisat) then
+            add := add + 29
+        else
+            add := add + 28;
+    end;
+    if (Bulan = 02) then
+    begin
+        add := add + 31;
+    end;
+
+    SumTanggalBulan := add;
+end;
+
+procedure TanggalToBulan (var tgl, bulan : Integer; khabisat : Boolean);
+begin
+    if (tgl > 31) then                                      // Januari
+    begin bulan := bulan + 1; tgl := tgl - 31;
+    if ((tgl > 28) and not(khabisat)) then                    // Februari
+    begin bulan := bulan + 1; tgl := tgl - 28; end
+    else if ((tgl > 29) and khabisat) then
+    begin bulan := bulan + 1; tgl := tgl - 29;
+    if (tgl > 31) then                                      // Maret
+    begin bulan := bulan + 1; tgl := tgl - 31;
+    if (tgl > 30) then                                      // April
+    begin bulan := bulan + 1; tgl := tgl - 30;
+    if (tgl > 31) then                                      // Mei
+    begin bulan := bulan + 1; tgl := tgl - 31;
+    if (tgl > 30) then                                      // Juni
+    begin bulan := bulan + 1; tgl := tgl - 30;
+    if (tgl > 31) then                                      // Juli
+    begin bulan := bulan + 1; tgl := tgl - 31;
+    if (tgl > 31) then                                      // Agustus
+    begin bulan := bulan + 1; tgl := tgl - 31;
+    if (tgl > 30) then                                      // September
+    begin bulan := bulan + 1; tgl := tgl - 30;
+    if (tgl > 31) then                                      // Oktober
+    begin bulan := bulan + 1; tgl := tgl - 31;
+    if (tgl > 30) then                                      // November
+    begin bulan := bulan + 1; tgl := tgl - 30; end;
+    end; end; end; end; end; end; end; end; end; end;
+end;
 
 function StringToTanggal (input : String) : Tanggal;
 { Input string berbentuk DD/MM/YYYY }
@@ -65,6 +169,40 @@ begin
     output := output + (temp);
 
     TanggalToString := output;
+end;
+
+function TambahHari (tgl : Tanggal; tambahan : Integer) : Tanggal;
+var
+    tglBr : Tanggal;
+    add : Integer;
+begin
+    add := 0;
+    
+    add := tambahan;
+    add := add + tgl.Tanggal;
+    add := add + SumTanggalBulan(tgl.Bulan, IsKhabisat(tgl.Tahun));
+    
+    tglBr := tgl;
+    tglBr.Bulan := 1;
+    while (add > 365) do
+    begin
+        tglBr.Tahun := tglBr.Tahun + 1;
+        if (IsKhabisat(tglBr.Tahun)) then
+            add := add - 366
+        else
+            add := add - 365;
+    end;
+
+    if ((add = 365) and not(IsKhabisat(tglBr.Tahun))) then
+    begin
+        add := 0;
+        tglBr.Tahun := tglBr.Tahun + 1;
+    end;
+
+    TanggalToBulan(add, tglBr.Bulan, IsKhabisat(tglBr.Tahun));
+    tglBr.Tanggal := add;
+    
+    TambahHari := tglBr;
 end;
 
 end.
