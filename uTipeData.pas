@@ -23,6 +23,7 @@ type
         Judul_Buku : string;
         Author : string;
         Jumlah_Buku : integer;
+        Tahun_Penerbit : integer;
         Kategori : Kategori;
     end;
 
