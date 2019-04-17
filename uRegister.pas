@@ -5,7 +5,7 @@ unit uRegister;
 
 // Kamus
 interface
-    uses uTipeData;
+    uses uTipeData, uHashing;
     procedure register(var array_user : Arr_User ); 
 
 // Algoritma
@@ -18,11 +18,14 @@ implementation
             nama, alamat, username, password : string;
             N : Integer;
         begin
+            // CLRSCR();
+            // echo 'aa';
             // Ambil data user
             Write('Masukkan nama pengunjung: '); readln(nama);
             write('Masukkan alamat pengunjung: '); readln(alamat);
             write('Masukkan username pengunjung: '); readln(username);
-            write('Masukkan password pengunjung: '); readln(password);
+            write('Masukkan password pengunjung: '); Inputpass(password);
+
 
             // Pemasukkan data ke tabel
             N := length(array_user);

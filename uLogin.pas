@@ -5,8 +5,8 @@ unit uLogin;
 
 // Kamus
 interface
-    uses uTipeData;
-    procedure login(array_user : Arr_User );
+    uses uTipeData, uHashing;
+    procedure login(array_user : Arr_User);
 
 // Algoritma
 implementation
@@ -25,22 +25,22 @@ implementation
             readln(username);
             N := length(array_user);
             found := False;
-            wrong := False;
             
             repeat
                 write('Masukkan password: ');
-                readln(password);
+                inputpass(password);
                 i := 0;    
-                while not(found) and (i<N) do //Ketika belum ketemu dan pencarian belum selesai
-                begin
-                    if (array_user[i].username = username) and (array_user[i].password = password) then begin
+
+                //Ketika belum ketemu dan pencarian belum selesai
+                while not(found) and (i<N) do begin
+                    if (array_user[i].Username = username) and (array_user[i].Password = password) then begin
                         WriteLn('Selamat datang ', array_user[i].nama, '!');
                         found := true;
                     end;
                     i := i+1;
                 end;
 
-                if not(found) and not(wrong) then begin
+                if not(found) then begin
                     WriteLn('Username / password salah! Silakan coba lagi.');
                     WriteLn();
                     write('Masukkan username: ');
