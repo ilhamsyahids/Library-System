@@ -27,7 +27,7 @@ begin
     N_pengunjung := 0;
     for i := 0 to N_user - 1 do
     begin
-        if (array_user[i].role = admin) then
+        if (array_user[i].role = 'Admin') then
         begin
             N_admin := N_admin + 1;
         end
@@ -46,19 +46,19 @@ begin
     N_programming := 0;
     for i := 0 to N_buku - 1 do
     begin
-        if (array_buku[i].kategori = sastra) then
+        if (array_buku[i].kategori = 'sastra') then
         begin
             N_sastra := N_sastra + array_buku[i].jumlah_buku;
         end
-        else if (array_buku[i].kategori = sains) then
+        else if (array_buku[i].kategori = 'sains') then
         begin
             N_sains := N_sains + array_buku[i].jumlah_buku;
         end
-        else if (array_buku[i].kategori = manga) then
+        else if (array_buku[i].kategori = 'manga') then
         begin
             N_manga := N_manga + array_buku[i].jumlah_buku;
         end
-        else if (array_buku[i].kategori = sejarah) then
+        else if (array_buku[i].kategori = 'sejarah') then
         begin
             N_sejarah := N_sejarah + array_buku[i].jumlah_buku;
         end

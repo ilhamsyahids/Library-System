@@ -7,8 +7,8 @@ unit uCari;
 // Kamus
 interface
     uses uTipeData;
-    procedure Cari(array_Buku : Arr_Buku);
     procedure sort_string(array_string : Arr_String);
+    procedure Cari(array_Buku : Arr_Buku);
 
 // Algoritma
 implementation
@@ -22,13 +22,14 @@ implementation
 
         begin
             n := Length(array_string);
-            for i:=0 to n-1 do begin
-                for j:=0 to n-1 do begin
-                    if (array_string[j] >= array_string[j+1]) then
-                        begin
-                            temp          := array_string[j+1];
-                            array_string[j+1] := array_string[j];
-                            array_string[j] := temp;
+            if (n>1) then begin
+                for i:=0 to n-1 do begin
+                    for j:=0 to n-1 do begin
+                        if (array_string[j] >= array_string[j+1]) then begin
+                                temp          := array_string[j+1];
+                                array_string[j+1] := array_string[j];
+                                array_string[j] := temp;
+                        end;
                     end;
                 end;
             end;
@@ -41,9 +42,8 @@ implementation
         // variabel array_buku diisi dengan daftar buku
         // pada program utama
         var
-            kat : Kategori;
+            kat : String;
             judul : Arr_String;
-            jenis : String;
             i, j, n, m, nk : Integer;
             ada, valid : Boolean;
 
@@ -55,48 +55,23 @@ implementation
             
             // Skema validasi untuk input kategori
             repeat
-                Write('Masukkan kategori: '); ReadLn(jenis);
-                case jenis of
-                    'programming' : 
-                        begin 
-                            kat := Programming; 
-                            valid := True;
-                        end;
-                    'sastra' : 
-                        begin 
-                            kat := Sastra; 
-                            valid := True;
-                        end;
-                    'sains' : 
-                        begin 
-                            kat := Sains; 
-                            valid := True;
-                        end;
-                    'manga' : 
-                        begin 
-                            kat := Manga; 
-                            valid := True;
-                        end;
-                    'sejarah' : 
-                        begin 
-                            kat := Sejarah; 
-                            valid := True;
-                        end;
-                    else begin
-                    Writeln('Kategori ', jenis, ' tidak valid');
-                    end;
+                Write('Masukkan kategori: '); ReadLn(kat);
+                if (kat = 'sastra') or (kat = 'programming') or (kat = 'sains') or (kat = 'manga') or (kat = 'sejarah') then begin
+                    valid := True;                
+                end else begin
+                    Writeln('Kategori ', kat, ' tidak valid');
                 end;
             until valid;
             
             // Pemasukkan hasil pencarian kedalam array baru
             nk := 0;
             while i<n do begin
-                if (array_Buku[i].kategori = kat) then begin
-                    nk := nk + 1;
-                    SetLength(judul, nk);
-                    ada := True;
-                    judul[i] := array_Buku[i].Judul_Buku;
-                end;
+                    if (array_Buku[i].kategori = kat) then begin
+                        nk := nk + 1;
+                        SetLength(judul, nk);
+                        ada := True;
+                        judul[nk-1] := array_Buku[i].Judul_Buku;
+                    end;
                 i := i + 1;
             end;
 
@@ -113,7 +88,8 @@ implementation
                     end;
                 end;
             end;
-            
+
+            // Tidak ada buku
             if not(ada) then
             begin
             WriteLn('Tidak ada buku dalam kategori ini.');
