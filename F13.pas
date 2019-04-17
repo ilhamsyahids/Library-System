@@ -1,18 +1,19 @@
 unit F13;
 
 interface
-	uses ini_header;
+	uses uTipeData, uTanggal;
 	
-	procedure load_file (var tBuku : tabBuku; var tUser : tabUser; var tPeminjaman : tabPeminjaman; var tPengembalian : tabPengembalian;
-						 var tKehilangan : tabKehilangan);
+	procedure load_file (var aBuku : Arr_Buku; var aUser : Arr_User; var aPeminjaman : Arr_Peminjaman; var aPengembalian : Arr_Pengembalian;
+						 var aKehilangan : Arr_Laporan_Buku_Hilang);
 	
 implementation
-	procedure load_file (var tBuku : tabBuku; var tUser : tabUser; var tPeminjaman : tabPeminjaman; var tPengembalian : tabPengembalian;
-					     var tKehilangan : tabKehilangan);
+	procedure load_file (var aBuku : Arr_Buku; var aUser : Arr_User; var aPeminjaman : Arr_Peminjaman; var aPengembalian : Arr_Pengembalian;
+					     var aKehilangan : Arr_Laporan_Buku_Hilang);
 	var
-		f			: TextFile;
-		nama_file	: string;
-		space		: string;
+		f							: Text;
+		nama_file					: string;
+		data, data1, data2, data3	: string;
+		n							: integer;
 	begin
 		write('Masukkan nama File Buku: ');
 		readln(nama_file);
@@ -20,7 +21,7 @@ implementation
 			'buku.csv' :   begin
 								assign(f, 'buku.csv');
 								reset(f);
-								tBuku.neff := 0;
+								n := 0;
 								if EOF(f) then
 								begin
 									writeln('File kosong.');
@@ -28,15 +29,12 @@ implementation
 								begin
 									while (not(EOF(f))) do
 									begin
-										tBuku.neff := tBuku.neff + 1;
-										readln(f, tBuku.tab[tBuku.neff].ID_Buku);
-										readln(f, tBuku.tab[tBuku.neff].Judul_Buku);
-										readln(f, tBuku.tab[tBuku.neff].Author);
-										readln(f, tBuku.tab[tBuku.neff].Jumlah_Buku);
-										readln(f, tBuku.tab[tBuku.neff].Tahun_Penerbit);
-										readln(f, tBuku.tab[tBuku.neff].Kategori);
-										readln(f, space);
+										n := n + 1;
+										str(aBuku[n].ID_Buku,data1); str(aBuku[n].Jumlah_Buku,data2); str(aBuku[n].Tahun_Penerbit,data3);
+										data := data1 + ',' + aBuku[n].Judul_Buku + ',' + aBuku[n].Author + ',' + data2 + ',' + data3 + ',' + aBuku[n].Kategori;
+										readln(f,data);
 									end;
+									SetLength(aBuku,n);
 								end;
 								close(f);
 							end;
@@ -48,7 +46,7 @@ implementation
 			'user.csv' :	begin
 								assign(f, 'user.csv');
 								reset(f);
-								tUser.neff := 0;
+								n := 0;
 								if EOF(f) then
 								begin
 									writeln('File kosong.');
@@ -56,14 +54,11 @@ implementation
 								begin
 									while (not(EOF(f))) do
 									begin
-										tUser.neff := tUser.neff + 1;
-										readln(f, tUser.tab[tUser.neff].Nama);
-										readln(f, tUser.tab[tUser.neff].Alamat);
-										readln(f, tUser.tab[tUser.neff].Username);
-										readln(f, tUser.tab[tUser.neff].Password);
-										readln(f, tUser.tab[tUser.neff].Role);
-										readln(f, space);
+										n := n + 1;
+										data := aUser[n].Nama + ',' + aUser[n].Alamat + ',' + aUser[n].Username + ',' + aUser[n].Password + ',' + aUser[n].Role;
+										readln(f,data);
 									end;
+									SetLength(aUser,n);
 								end;
 								close(f);
 							 end;
@@ -75,7 +70,7 @@ implementation
 			'peminjaman.csv' :	begin
 									assign(f, 'peminjaman.csv');
 									reset(f);
-									tPeminjaman.neff := 0;
+									n := 0;
 									if EOF(f) then
 									begin
 										writeln('File kosong.');
@@ -83,14 +78,13 @@ implementation
 									begin
 										while (not(EOF(f))) do
 										begin
-											tPeminjaman.neff := tPeminjaman.neff + 1;
-											readln(f, tPeminjaman.tab[tPeminjaman.neff].Username);
-											readln(f, tPeminjaman.tab[tPeminjaman.neff].ID_Buku);
-											readln(f, tPeminjaman.tab[tPeminjaman.neff].Tanggal_Peminjaman.hari, tPeminjaman.tab[tPeminjaman.neff].Tanggal_Peminjaman.bulan, tPeminjaman.tab[tPeminjaman.neff].Tanggal_Peminjaman.tahun);
-											readln(f, tPeminjaman.tab[tPeminjaman.neff].Tanggal_Batas_Pengembalian.hari, tPeminjaman.tab[tPeminjaman.neff].Tanggal_Batas_Pengembalian.bulan, tPeminjaman.tab[tPeminjaman.neff].Tanggal_Batas_Pengembalian.tahun);
-											readln(f, tPeminjaman.tab[tPeminjaman.neff].Status_Pengembalian);
-											readln(f, space);
+											n := n + 1;
+											str(aPeminjaman[n].ID_Buku,data1);
+											aPeminjaman[n].Tanggal_Peminjaman := StringToTanggal(data2); aPeminjaman[n].Tanggal_Batas_Pengembalian := StringToTanggal(data3);
+											data := aPeminjaman[n].Username + ',' + data1 + ',' + data2 + ',' + data3 + aPeminjaman[n].Status_Pengembalian;
+											readln(f,data);
 										end;
+										SetLength(aPeminjaman,n);
 									end;
 									close(f);
 								 end;
@@ -102,7 +96,7 @@ implementation
 			'pengembalian.csv' :	begin
 										assign(f, 'pengembalian.csv');
 										reset(f);
-										tPengembalian.neff := 0;
+										n := 0;
 										if EOF(f) then
 										begin
 											writeln('File kosong.');
@@ -110,12 +104,13 @@ implementation
 										begin
 											while (not(EOF(f))) do
 											begin
-												tPengembalian.neff := tPengembalian.neff + 1;
-												readln(f, tPengembalian.tab[tPengembalian.neff].Username);
-												readln(f, tPengembalian.tab[tPengembalian.neff].ID_Buku);
-												readln(f, tPengembalian.tab[tPengembalian.neff].Tanggal_Pengembalian.hari, tPengembalian.tab[tPengembalian.neff].Tanggal_Pengembalian.bulan, tPengembalian.tab[tPengembalian.neff].Tanggal_Pengembalian.tahun);
-												readln(f, space);
+												n := n + 1;
+												str(aPengembalian[n].ID_Buku,data1);
+												aPengembalian[n].Tanggal_Pengembalian := StringToTanggal(data2);
+												data := aPengembalian[n].Username + ',' + data1 + ',' + data2;
+												readln(f,data);
 											end;
+											SetLength(aPengembalian,n);
 										end;
 										close(f);
 									 end;
@@ -127,7 +122,7 @@ implementation
 			'kehilangan.csv' :	begin
 									assign(f, 'kehilangan.csv');
 									reset(f);
-									tKehilangan.neff := 0;
+									n := 0;
 									if EOF(f) then
 									begin
 										writeln('File kosong.');
@@ -135,12 +130,13 @@ implementation
 									begin
 										while (not(EOF(f))) do
 										begin
-											tKehilangan.neff := tKehilangan.neff + 1;
-											readln(f, tKehilangan.tab[tKehilangan.neff].Username);
-											readln(f, tKehilangan.tab[tKehilangan.neff].ID_Buku_Hilang);
-											readln(f, tKehilangan.tab[tKehilangan.neff].Tanggal_Laporan.hari, tKehilangan.tab[tKehilangan.neff].Tanggal_Laporan.bulan, tKehilangan.tab[tKehilangan.neff].Tanggal_Laporan.tahun);
-											readln(f, space);
+											n := n + 1;
+											str(aKehilangan[n].ID_Buku_Hilang,data1);
+											aKehilangan[n].Tanggal_Laporan := StringToTanggal(data2);
+											data := aKehilangan[n].Username + ',' + data1 + ',' + data2;
+											readln(f,data);
 										end;
+										SetLength(aKehilangan,n);
 									end;
 									close(f);
 								 end;
