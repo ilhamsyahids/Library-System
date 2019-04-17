@@ -10,53 +10,35 @@ uses uTanggal;
 type
 
     { Bentukan Buku }
-    Kategori = (
-        Sastra,
-        Sains,
-        Manga,
-        Sejarah,
-        Programming
-    );
-
     Buku = record
         ID_Buku : integer;
         Judul_Buku : string;
         Author : string;
         Jumlah_Buku : integer;
         Tahun_Penerbit : integer;
-        Kategori : Kategori;
+        Kategori : String;
     end;
 
     Arr_Buku = array of Buku;
 
     { Bentukan pengguna }
-    Role = (
-        Pengunjung,
-        Admin
-    );
-
     User = record
         Nama : string;
         Alamat : string;
         Username : string;
         Password : string;
-        Role : Role;
+        Role : String;
     end;
 
     Arr_User = array of User;
 
     { Bentukan Peminjaman }
-    Status_Pengembalian = (
-        sudah,
-        belum
-    );
-
     Peminjaman = record
         Username : string;
         ID_Buku : integer;
         Tanggal_Peminjaman : Tanggal;
         Tanggal_Batas_Pengembalian : Tanggal;
-        Status_Pengembalian : Status_Pengembalian;
+        Status_Pengembalian : String;
     end;
 
     Arr_Peminjaman = array of Peminjaman;
