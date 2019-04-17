@@ -13,6 +13,9 @@ Berisi fungsi `login(<daftar user>)`, fitur F02
 **uCari**
 Berisi fungsi `cari(<daftar buku>)`, fitur F03
 
+**uCariBukuTahunTerbit**
+Berisi fungsi `caritahunterbit(<daftar buku>)`, fitur F04
+
 **uTambahJumlahBuku**
 Berisi fungsi `tambah_jumlah_buku(<daftar buku>)`, fitur F10
 
@@ -32,6 +35,9 @@ Berisi tipe data 'Tanggal' dan fungsi-fungsi untuk mengkonversi string-tanggal
 
 **uCariBuku**
 Berisi fungsi-fungsi yang berhubungan dengan pencarian buku
+
+**uHashing**
+Berisi fungsi-fungsi yang berhubungan dengan hashing password
 
 ## FAQ cara pake unit tambahan dll
 
