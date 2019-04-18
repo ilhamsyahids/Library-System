@@ -1,19 +1,19 @@
 unit F14;
 
 interface
-	uses ini_header;
+	uses uTipeData, uTanggal;
 	
-	procedure save_file (var tBuku : tabBuku; var tUser : tabUser; var tPeminjaman : tabPeminjaman; var tPengembalian : tabPengembalian;
-						 var tKehilangan : tabKehilangan);
+	procedure save_file (var aBuku : Arr_Buku; var aUser : Arr_User; var aPeminjaman : Arr_Peminjaman; var aPengembalian : Arr_Pengembalian;
+						 var aKehilangan : Arr_Laporan_Buku_Hilang);
 						 
 implementation
-	procedure save_file (var tBuku : tabBuku; var tUser : tabUser; var tPeminjaman : tabPeminjaman; var tPengembalian : tabPengembalian;
-						 var tKehilangan : tabKehilangan);
+	procedure save_file (var aBuku : Arr_Buku; var aUser : Arr_User; var aPeminjaman : Arr_Peminjaman; var aPengembalian : Arr_Pengembalian;
+						 var aKehilangan : Arr_Laporan_Buku_Hilang);
 	var
-		f			: TextFile;
-		nama_file	: string;
-		space		: string;
-		i			: integer;
+		f						: text;
+		nama_file					: string;
+		data, data1, data2, data3			: string;
+		i, n						: integer;
 	begin
 		write('Masukkan nama File Buku: ');
 		readln(nama_file);
@@ -21,15 +21,12 @@ implementation
 			'buku.csv' :	begin
 								assign(f, 'buku.csv');
 								rewrite(f);
-								for i:=1 to tBuku.neff do
+								n := length(aBuku) - 1;
+								for i:=0 to n do
 								begin
-									writeln(f, tBuku.tab[i].ID_Buku);
-									writeln(f, tBuku.tab[i].Judul_Buku);
-									writeln(f, tBuku.tab[i].Author);
-									writeln(f, tBuku.tab[i].Jumlah_Buku);
-									writeln(f, tBuku.tab[i].Tahun_Penerbit);
-									writeln(f, tBuku.tab[i].Kategori);
-									writeln(f, space);
+									str(aBuku[i].ID_Buku,data1); str(aBuku[i].Jumlah_Buku,data2); str(aBuku[i].Tahun_Penerbit,data3);
+									data := data1 + ',' + aBuku[i].Judul_Buku + ',' + aBuku[i].Author + ',' + data2 + ',' + data3 + ',' + aBuku[i].Kategori;
+									writeln(f,data);
 								end;
 								close(f);
 							 end;
@@ -41,14 +38,11 @@ implementation
 			'user.csv' :	begin
 								assign(f, 'user.csv');
 								rewrite(f);
-								for i:=1 to tUser.neff do
+								n := length(aUser) - 1;
+								for i:=0 to n do
 								begin
-									writeln(f, tUser.tab[i].Nama);
-									writeln(f, tUser.tab[i].Alamat);
-									writeln(f, tUser.tab[i].Username);
-									writeln(f, tUser.tab[i].Password);
-									writeln(f, tUser.tab[i].Role);
-									writeln(f, space);
+									data := aUser[i].Nama + ',' + aUser[i].Alamat + ',' + aUser[i].Username + ',' + aUser[i].Password + ',' + aUser[i].Role;
+									writeln(f,data);
 								end;
 								close(f);
 							 end;
@@ -60,14 +54,13 @@ implementation
 			'peminjaman.csv' :	begin
 									assign(f, 'peminjaman.csv');
 									rewrite(f);
-									for i:=1 to tPeminjaman.neff do
+									n := length(aPeminjaman) - 1;
+									for i:=0 to n do
 									begin
-										writeln(f, tPeminjaman.tab[i].Username);
-										writeln(f, tPeminjaman.tab[i].ID_Buku);
-										writeln(f, tPeminjaman.tab[i].Tanggal_Peminjaman.hari, tPeminjaman.tab[i].Tanggal_Peminjaman.bulan, tPeminjaman.tab[i].Tanggal_Peminjaman.tahun);
-										writeln(f, tPeminjaman.tab[i].Tanggal_Batas_Pengembalian.hari, tPeminjaman.tab[i].Tanggal_Batas_Pengembalian.bulan, tPeminjaman.tab[i].Tanggal_Batas_Pengembalian.tahun);
-										writeln(f, tPeminjaman.tab[i].Status_Pengembalian);
-										writeln(f, space);
+										str(aPeminjaman[i].ID_Buku,data1);
+										aPeminjaman[i].Tanggal_Peminjaman := StringToTanggal(data2); aPeminjaman[i].Tanggal_Batas_Pengembalian := StringToTanggal(data3);
+										data := aPeminjaman[i].Username + ',' + data1 + ',' + data2 + ',' + data3 + ',' + aPeminjaman[i].Status_Pengembalian;
+										writeln(f,data);
 									end;
 									close(f);
 								 end;
@@ -79,12 +72,13 @@ implementation
 			'pengembalian.csv' :	begin
 										assign(f, 'pengembalian.csv');
 										rewrite(f);
-										for i:=1 to tPengembalian.neff do
+										n := length(aPengembalian) - 1;
+										for i:=0 to n do
 										begin
-											writeln(f, tPengembalian.tab[i].Username);
-											writeln(f, tPengembalian.tab[i].ID_Buku);
-											writeln(f, tPengembalian.tab[i].Tanggal_Pengembalian.hari, tPengembalian.tab[i].Tanggal_Pengembalian.bulan, tPengembalian.tab[i].Tanggal_Pengembalian.tahun);
-											writeln(f, space);
+											str(aPengembalian[i].ID_Buku,data1);
+											aPengembalian[i].Tanggal_Pengembalian := StringToTanggal(data2);
+											data := aPengembalian[i].Username + ',' + data1 + ',' + data2;
+											writeln(f,data);
 										end;
 										close(f);
 									 end;
@@ -96,12 +90,13 @@ implementation
 			'kehilangan.csv' :	begin
 									assign(f, 'kehilangan.csv');
 									rewrite(f);
-									for i:=1 to tKehilangan.neff do
+									n := length(aKehilangan) - 1;
+									for i:=0 to n do
 									begin
-										readln(f, tKehilangan.tab[i].Username);
-										readln(f, tKehilangan.tab[i].ID_Buku_Hilang);
-										readln(f, tKehilangan.tab[i].Tanggal_Laporan.hari, tKehilangan.tab[i].Tanggal_Laporan.bulan, tKehilangan.tab[i].Tanggal_Laporan.tahun);
-										readln(f, space);
+										str(aKehilangan[i].ID_Buku_Hilang,data1);
+										aKehilangan[i].Tanggal_Laporan := StringToTanggal(data2);
+										data := aKehilangan[i].Username + ',' + data1 + ',' + data2;
+										writeln(f,data);
 									end;
 									close(f);
 								 end;
