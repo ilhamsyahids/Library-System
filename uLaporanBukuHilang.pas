@@ -27,8 +27,8 @@ begin
     for i := 0 to N_bukuhilang - 1 do
     begin
         println(array_bukuhilang[i].ID_Buku_Hilang, ' | ', 
-        array_bukuhilang.Judul_Buku_Hilang, ' | ', 
-        array_bukuhilang.Tanggal_Laporan)
+        array_bukuhilang[i].Judul_Buku_Hilang, ' | ', 
+        array_bukuhilang[i].Tanggal_Laporan)
     end;
 
     { CATATAN : Di uTipeData, tambahkan Judul_Buku_Hilang
