@@ -9,8 +9,8 @@ implementation
 	procedure cari_anggota (var cariUser : Arr_User);
 	
 	var
-		nama_user					: string;
-		i, n, j						: integer;
+		nama_user			: string;
+		i, n, j				: integer;
 		result, result1, result2	: integer;
 	
 	begin
