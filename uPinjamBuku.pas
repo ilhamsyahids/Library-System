@@ -31,31 +31,30 @@ begin
     write('Masukkan tanggal hari ini: ');
     readln(stringtanggal);
 
-    tanggal1 := StringToTanggal(stringtanggal);
-
-    pinjam.Username := nama_user;
-    pinjam.ID_buku := id;
-    pinjam.Tanggal_Peminjaman := StringToTanggal (stringtanggal);
-    pinjam.Tanggal_Batas_Pengembalian := TambahHari(tanggal1, 7);
-    pinjam.Status_Pengembalian := belum;
-
-    SetLength(array_pinjam, Length(array_pinjam)+1);
-    array_pinjam[High(array_pinjam)] := pinjam;
 
     // Blok proses (mencari id yang cocok, dan menambahkan jumlah buku)
     buku_yang_ditemukan := cari_buku_dengan_id(id, array_buku, index);
-    if (buku_yang_ditemukan.jumlah_buku > 0) then
-    begin
-    buku_yang_ditemukan.jumlah_buku := buku_yang_ditemukan.jumlah_buku - 1;
-    array_buku[index] := buku_yang_ditemukan;
+    if (buku_yang_ditemukan.jumlah_buku > 0) then begin
+        tanggal1 := StringToTanggal(stringtanggal);
 
-    // Blok output
-    writeln('Buku ', buku_yang_ditemukan.judul_buku, ' berhasil dipinjam!');
-    writeln('Tersisa ', buku_yang_ditemukan.jumlah_buku, ' buku ', buku_yang_ditemukan.judul_buku);
-    end else
-    begin
-    writeln('Buku ', buku_yang_ditemukan.judul_buku, ' sedang habis!');
-    writeln('Coba lain kali.');
+        pinjam.Username := nama_user;
+        pinjam.ID_buku := id;
+        pinjam.Tanggal_Peminjaman := StringToTanggal (stringtanggal);
+        pinjam.Tanggal_Batas_Pengembalian := TambahHari(tanggal1, 7);
+        pinjam.Status_Pengembalian := 'belum';
+
+        SetLength(array_pinjam, Length(array_pinjam)+1);
+        array_pinjam[High(array_pinjam)] := pinjam;
+        
+        buku_yang_ditemukan.jumlah_buku := buku_yang_ditemukan.jumlah_buku - 1;
+        array_buku[index] := buku_yang_ditemukan;
+
+        // Blok output
+        writeln('Buku ', buku_yang_ditemukan.judul_buku, ' berhasil dipinjam!');
+        writeln('Tersisa ', buku_yang_ditemukan.jumlah_buku, ' buku ', buku_yang_ditemukan.judul_buku);
+    end else begin
+        writeln('Buku ', buku_yang_ditemukan.judul_buku, ' sedang habis!');
+        writeln('Coba lain kali.');
     end;
 end;    
 
