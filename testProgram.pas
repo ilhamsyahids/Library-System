@@ -126,7 +126,7 @@ begin
 
     currentUser := login(array_user);
 
-    CariTahunTerbit(array_buku);
+    bukuhilang(array_buku, array_hilang, currentUser);
 
-    //save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
+    save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
 end.

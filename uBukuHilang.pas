@@ -10,12 +10,12 @@ interface
         uTipeData,
         uCariBuku;
 
-    procedure bukuhilang (array_hilang : Arr_Laporan_Buku_Hilang; nama_user: String);
+    procedure bukuhilang (var array_buku : Arr_Buku; var array_hilang : Arr_Laporan_Buku_Hilang; nama_user: String);
 
 { ALGORITMA }
 implementation
 
-    procedure bukuhilang (array_hilang : Arr_Laporan_Buku_Hilang; nama_user: String);
+    procedure bukuhilang (var array_buku : Arr_Buku; var array_hilang : Arr_Laporan_Buku_Hilang; nama_user: String);
     { Menambah buku hilang dengan input id, judul, serta
     tanggal pelaporan buku yang hilang dengan array_hilang
     sebagai array berisi daftar buku yang hilang }
@@ -25,6 +25,8 @@ implementation
         judul_h         : string;
         stringtanggal_h : string;
         hilang          : Laporan_Buku_Hilang;
+        index           : integer;
+        buku_hilang     : Buku;
 
     begin
         { Inisialisasi }
@@ -33,10 +35,14 @@ implementation
         
         write('Masukkan id buku: '); readln(id_h);
         write('Masukkan judul buku: '); readln(judul_h);
-        write('Masukkan tanggal pelaporan :'); readln(stringtanggal_h);
+        write('Masukkan tanggal pelaporan: '); readln(stringtanggal_h);
         { Penginputan buku hilang }
 
         // BLOK PROSES 
+
+        buku_hilang := cari_buku_dengan_id(id_h, array_buku, index);
+        buku_hilang.jumlah_buku := buku_hilang.jumlah_buku - 1;
+        array_buku[index] := buku_hilang;
 
         hilang.Username             := nama_user;
         hilang.ID_Buku_Hilang       := id_h;

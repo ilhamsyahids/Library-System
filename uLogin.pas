@@ -44,7 +44,6 @@ implementation
                     WriteLn('Username / password salah! Silakan coba lagi.');
                     WriteLn();
                     write('Masukkan username: ');
-                    WriteLn(Generate224('password'));
                     readln(username);
                     
                 end;
