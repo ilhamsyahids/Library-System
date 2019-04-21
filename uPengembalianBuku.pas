@@ -1,7 +1,7 @@
 {16518115/Muhammad Firas}
 {unit pengembalian buku}
 
-unit uPinjamBuku;
+unit uPengembalianBuku;
 
 interface
 
