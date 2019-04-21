@@ -116,14 +116,16 @@ implementation
             Writeln();
             WriteLn('Buku yang terbit ', jenis, ' ', tahun);
             sort_string(tahunbuku);
-            for i:=0 to nk do begin
-                for j:=0 to n-1 do begin
-                    if (tahunbuku[i] = array_Buku[j].Judul_Buku) then begin
-                        writeln(array_Buku[j].ID_Buku, ' | ', array_Buku[j].Judul_Buku, ' | ', array_Buku[j].Author);
+            if (nk > 0) then
+            begin
+                for i:=1 to nk do begin
+                    for j:=0 to n-1 do begin
+                        if (tahunbuku[i] = array_Buku[j].Judul_Buku) then begin
+                            writeln(array_Buku[j].ID_Buku, ' | ', array_Buku[j].Judul_Buku, ' | ', array_Buku[j].Author);
+                        end;
                     end;
                 end;
             end;
-            
             if not(ada) then begin
                 WriteLn('Tidak ada buku dalam kategori ini.');
             end;

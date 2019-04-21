@@ -3,16 +3,18 @@ program testProgram;
 uses
     uTipeData,
     uTanggal,
-    uLogin,             // F01
-    uRegister,          // F02
-    uCari,              // F03
-    uPinjamBuku,        // F05
-    uPengembalianBuku,  // F06
-    uTambahJumlahBuku,  // F10
-    uRiwayat,           // F11
-    uStatistik,         // F12
-    uLoadFile,          // F13
-    uSaveFile;          // F14
+    uLogin,                 // F01
+    uRegister,              // F02
+    uCari,                  // F03
+    uCariBukuTahunTerbit,   // F04
+    uPinjamBuku,            // F05
+    uPengembalianBuku,      // F06
+    uBukuHilang,            // F07
+    uTambahJumlahBuku,      // F10
+    uRiwayat,               // F11
+    uStatistik,             // F12
+    uLoadFile,              // F13
+    uSaveFile;              // F14
 
 var
     array_buku : Arr_Buku;
@@ -124,9 +126,7 @@ begin
 
     currentUser := login(array_user);
 
-    pinjam_buku(array_buku, array_peminjaman, currentUser);
+    CariTahunTerbit(array_buku);
 
-    kembalikan_buku(array_buku, array_peminjaman, array_pengembalian, currentUser);
-
-    save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
+    //save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
 end.

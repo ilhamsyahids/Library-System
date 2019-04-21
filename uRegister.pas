@@ -5,7 +5,7 @@ unit uRegister;
 
 // Kamus
 interface
-    uses uTipeData, uHashing;
+    uses uTipeData, uHashing, uSHA3;
     procedure register(var array_user : Arr_User ); 
 
 // Algoritma
@@ -33,7 +33,7 @@ implementation
             array_user[N].Nama := nama;
             array_user[N].Alamat := alamat;
             array_user[N].Username := username;
-            array_user[N].Password := password;
+            array_user[N].Password := Generate224(password);
             
             WriteLn();
             writeln('Pengunjung ', array_user[N].Nama, ' berhasil terdaftar sebagai user.');

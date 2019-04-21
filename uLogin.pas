@@ -5,7 +5,7 @@ unit uLogin;
 
 // Kamus
 interface
-    uses uTipeData, uHashing;
+    uses uTipeData, uHashing, uSHA3;
     function login(array_user : Arr_User) : String;
 
 // Algoritma
@@ -29,12 +29,11 @@ implementation
             repeat
                 write('Masukkan password: ');
                 inputpass(password);
-                WriteLn(password);
                 i := 0;    
 
                 //Ketika belum ketemu dan pencarian belum selesai
                 while not(found) and (i<N) do begin
-                    if (array_user[i].Username = username) and (array_user[i].Password = password) then begin
+                    if (array_user[i].Username = username) and (array_user[i].Password = Generate224(password)) then begin
                         WriteLn('Selamat datang ', array_user[i].nama, '!');
                         found := true;
                     end;
@@ -45,6 +44,7 @@ implementation
                     WriteLn('Username / password salah! Silakan coba lagi.');
                     WriteLn();
                     write('Masukkan username: ');
+                    WriteLn(Generate224('password'));
                     readln(username);
                     
                 end;
