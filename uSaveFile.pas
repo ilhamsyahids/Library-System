@@ -48,7 +48,7 @@ implementation
 		for i:=0 to n do
 		begin
 			str(aPeminjaman[i].ID_Buku,data1);
-			aPeminjaman[i].Tanggal_Peminjaman := StringToTanggal(data2); aPeminjaman[i].Tanggal_Batas_Pengembalian := StringToTanggal(data3);
+			data2 := TanggalToString(aPeminjaman[i].Tanggal_Peminjaman); data3 := TanggalToString(aPeminjaman[i].Tanggal_Batas_Pengembalian);
 			data := aPeminjaman[i].Username + ',' + data1 + ',' + data2 + ',' + data3 + ',' + aPeminjaman[i].Status_Pengembalian;
 			writeln(f,data);
 		end;
@@ -62,7 +62,7 @@ implementation
 		for i:=0 to n do
 		begin
 			str(aPengembalian[i].ID_Buku,data1);
-			aPengembalian[i].Tanggal_Pengembalian := StringToTanggal(data2);
+			data2 := TanggalToString(aPengembalian[i].Tanggal_Pengembalian);
 			data := aPengembalian[i].Username + ',' + data1 + ',' + data2;
 			writeln(f,data);
 		end;
@@ -76,7 +76,7 @@ implementation
 		for i:=0 to n do
 		begin
 			str(aKehilangan[i].ID_Buku_Hilang,data1);
-			aKehilangan[i].Tanggal_Laporan := StringToTanggal(data2);
+			data2 := TanggalToString(aKehilangan[i].Tanggal_Laporan);
 			data := aKehilangan[i].Username + ',' + data1 + ',' + data2;
 			writeln(f,data);
 		end;

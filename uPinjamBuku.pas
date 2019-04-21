@@ -38,7 +38,7 @@ begin
 
         pinjam.Username := nama_user;
         pinjam.ID_buku := id;
-        pinjam.Tanggal_Peminjaman := StringToTanggal (stringtanggal);
+        pinjam.Tanggal_Peminjaman := tanggal1;
         pinjam.Tanggal_Batas_Pengembalian := TambahHari(tanggal1, 7);
         pinjam.Status_Pengembalian := 'belum';
 

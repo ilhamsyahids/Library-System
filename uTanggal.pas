@@ -16,6 +16,8 @@ function TanggalToString (input : Tanggal) : String;
 
 function TambahHari (tgl : Tanggal; tambahan : Integer) : Tanggal;
 
+function IsLebihTelat (tgl1, tgl2 : Tanggal) : Boolean;
+
 implementation
 
 function IsKhabisat (tahun : Integer) : Boolean;
@@ -98,7 +100,7 @@ begin
     if ((tgl > 28) and not(khabisat)) then                    // Februari
     begin bulan := bulan + 1; tgl := tgl - 28; end
     else if ((tgl > 29) and khabisat) then
-    begin bulan := bulan + 1; tgl := tgl - 29;
+    begin bulan := bulan + 1; tgl := tgl - 29; end;
     if (tgl > 31) then                                      // Maret
     begin bulan := bulan + 1; tgl := tgl - 31;
     if (tgl > 30) then                                      // April
@@ -117,7 +119,7 @@ begin
     begin bulan := bulan + 1; tgl := tgl - 31;
     if (tgl > 30) then                                      // November
     begin bulan := bulan + 1; tgl := tgl - 30; end;
-    end; end; end; end; end; end; end; end; end; end;
+    end; end; end; end; end; end; end; end; end;
 end;
 
 function StringToTanggal (input : String) : Tanggal;
@@ -203,6 +205,24 @@ begin
     tglBr.Tanggal := add;
     
     TambahHari := tglBr;
+end;
+
+function IsLebihTelat (tgl1, tgl2 : Tanggal) : Boolean;
+var
+    add1, add2 : Integer;
+begin
+    add1 := 0;
+    add1 := add1 + tgl1.Tanggal;
+    add1 := add1 + SumTanggalBulan(tgl1.Bulan, IsKhabisat(tgl1.Tahun));
+
+    add2 := 0;
+    add2 := add2 + tgl2.Tanggal;
+    add2 := add2 + SumTanggalBulan(tgl2.Bulan, IsKhabisat(tgl2.Tahun));
+
+    if (tgl1.Tahun = tgl2.Tahun) then
+        IsLebihTelat := add1 > add2
+    else
+        IsLebihTelat := tgl1.Tahun > tgl2.Tahun;
 end;
 
 end.

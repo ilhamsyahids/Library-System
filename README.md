@@ -19,8 +19,8 @@ Berisi fungsi `caritahunterbit(<daftar_buku>)`, fitur F04
 **uPinjamBuku**
 Berisi fungsi `pinjam_buku(<daftar_buku>, <daftar_pinjam>, <nama_user>)`, fitur F05
 
-**uBukuHilang**
-Berisi fungsi `bukuhilang(<daftar_buku>)`, fitur F06
+**uPengembalianBuku**
+Berisi fungsi `kembalikan_buku(<daftar_buku>, <daftar_kembali>, <nama_user>)`, fitur F06
 
 **uBukuHilang**
 Berisi fungsi `bukuhilang(<daftar_buku>)`, fitur F07

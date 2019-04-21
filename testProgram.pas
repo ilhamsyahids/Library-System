@@ -7,6 +7,7 @@ uses
     uRegister,          // F02
     uCari,              // F03
     uPinjamBuku,        // F05
+    uPengembalianBuku,  // F06
     uTambahJumlahBuku,  // F10
     uRiwayat,           // F11
     uStatistik,         // F12
@@ -118,28 +119,14 @@ begin
     array_hilang[0].ID_Buku_Hilang := 3753;
     array_hilang[0].Tanggal_Laporan := StringToTanggal('21/04/2019');
     
-    load_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
-    
-    WriteLn(array_buku[0].Judul_Buku);
-    WriteLn(array_buku[0].Author);
-    WriteLn(array_buku[1].Judul_Buku);
-    WriteLn(array_buku[1].Author);
-    WriteLn(array_buku[2].Judul_Buku);
-    WriteLn(array_buku[2].Author);
-    WriteLn(array_buku[3].Judul_Buku);
-    WriteLn(array_buku[3].Author);
-    currentUser := login(array_user);
 
-    {
-    WriteLn(array_buku[0].Judul_Buku);
-    WriteLn(array_buku[1].Judul_Buku);
-    WriteLn(array_buku[2].Judul_Buku);
-    WriteLn(array_buku[3].Judul_Buku);
-    }
+    load_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
+
+    currentUser := login(array_user);
 
     pinjam_buku(array_buku, array_peminjaman, currentUser);
 
-    WriteLn(array_peminjaman[4].ID_Buku);
+    kembalikan_buku(array_buku, array_peminjaman, array_pengembalian, currentUser);
 
     save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
 end.
