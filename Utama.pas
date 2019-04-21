@@ -46,20 +46,17 @@ begin
 	case pil1 of
 	'1' {Register}	: begin
 						register(array_user);
-						stop1 := true;
-						username := login(array_user);
 					  end;
 	'2' {Login}		: begin
-						login(array_user);
-						stop1 := true;
 						username := login(array_user);
+						stop1 := true;
 					  end;
 	else
 		begin
 			writeln('Input salah!');
 		end;
 	end;
-	until stop1;
+	until stop1 = true;
 	
 	if username = 'Admin' then
 	begin
@@ -213,7 +210,7 @@ begin
 				writeln('Masukkan salah');
 			end;
 		end;
-		until stop2;
+		until stop2 = true;
 	end;
 
 	writeln('Berhasil keluar dari program. Semoga hari anda menyenangkan!');
