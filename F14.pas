@@ -12,96 +12,76 @@ implementation
 	var
 		f						: text;
 		nama_file					: string;
-		data, data1, data2, data3			: string;
+		data, data1, data2, data3	: string;
 		i, n						: integer;
 	begin
 		write('Masukkan nama File Buku: ');
 		readln(nama_file);
-		case nama_file of
-			'buku.csv' :	begin
-								assign(f, 'buku.csv');
-								rewrite(f);
-								n := length(aBuku) - 1;
-								for i:=0 to n do
-								begin
-									str(aBuku[i].ID_Buku,data1); str(aBuku[i].Jumlah_Buku,data2); str(aBuku[i].Tahun_Penerbit,data3);
-									data := data1 + ',' + aBuku[i].Judul_Buku + ',' + aBuku[i].Author + ',' + data2 + ',' + data3 + ',' + aBuku[i].Kategori;
-									writeln(f,data);
-								end;
-								close(f);
-							 end;
+		assign(f, nama_file);
+		rewrite(f);
+		n := length(aBuku) - 1;
+		for i:=0 to n do
+		begin
+			str(aBuku[i].ID_Buku,data1); str(aBuku[i].Jumlah_Buku,data2); str(aBuku[i].Tahun_Penerbit,data3);
+			data := data1 + ',' + aBuku[i].Judul_Buku + ',' + aBuku[i].Author + ',' + data2 + ',' + data3 + ',' + aBuku[i].Kategori;
+			writeln(f,data);
 		end;
+		close(f);
 		
 		write('Masukkan nama File User: ');
 		readln(nama_file);
-		case nama_file of
-			'user.csv' :	begin
-								assign(f, 'user.csv');
-								rewrite(f);
-								n := length(aUser) - 1;
-								for i:=0 to n do
-								begin
-									data := aUser[i].Nama + ',' + aUser[i].Alamat + ',' + aUser[i].Username + ',' + aUser[i].Password + ',' + aUser[i].Role;
-									writeln(f,data);
-								end;
-								close(f);
-							 end;
+		assign(f, nama_file);
+		rewrite(f);
+		n := length(aUser) - 1;
+		for i:=0 to n do
+		begin
+			data := aUser[i].Nama + ',' + aUser[i].Alamat + ',' + aUser[i].Username + ',' + aUser[i].Password + ',' + aUser[i].Role;
+			writeln(f,data);
 		end;
+		close(f);
 
 		write('Masukkan nama File Peminjaman: ');
-		read(nama_file);
-		case nama_file of
-			'peminjaman.csv' :	begin
-									assign(f, 'peminjaman.csv');
-									rewrite(f);
-									n := length(aPeminjaman) - 1;
-									for i:=0 to n do
-									begin
-										str(aPeminjaman[i].ID_Buku,data1);
-										aPeminjaman[i].Tanggal_Peminjaman := StringToTanggal(data2); aPeminjaman[i].Tanggal_Batas_Pengembalian := StringToTanggal(data3);
-										data := aPeminjaman[i].Username + ',' + data1 + ',' + data2 + ',' + data3 + ',' + aPeminjaman[i].Status_Pengembalian;
-										writeln(f,data);
-									end;
-									close(f);
-								 end;
+		readln(nama_file);
+		assign(f, nama_file);
+		rewrite(f);
+		n := length(aPeminjaman) - 1;
+		for i:=0 to n do
+		begin
+			str(aPeminjaman[i].ID_Buku,data1);
+			aPeminjaman[i].Tanggal_Peminjaman := StringToTanggal(data2); aPeminjaman[i].Tanggal_Batas_Pengembalian := StringToTanggal(data3);
+			data := aPeminjaman[i].Username + ',' + data1 + ',' + data2 + ',' + data3 + ',' + aPeminjaman[i].Status_Pengembalian;
+			writeln(f,data);
 		end;
+		close(f);
 		
 		write('Masukkan nama File Pengembalian: ');
 		readln(nama_file);
-		case nama_file of
-			'pengembalian.csv' :	begin
-										assign(f, 'pengembalian.csv');
-										rewrite(f);
-										n := length(aPengembalian) - 1;
-										for i:=0 to n do
-										begin
-											str(aPengembalian[i].ID_Buku,data1);
-											aPengembalian[i].Tanggal_Pengembalian := StringToTanggal(data2);
-											data := aPengembalian[i].Username + ',' + data1 + ',' + data2;
-											writeln(f,data);
-										end;
-										close(f);
-									 end;
+		assign(f, nama_file);
+		rewrite(f);
+		n := length(aPengembalian) - 1;
+		for i:=0 to n do
+		begin
+			str(aPengembalian[i].ID_Buku,data1);
+			aPengembalian[i].Tanggal_Pengembalian := StringToTanggal(data2);
+			data := aPengembalian[i].Username + ',' + data1 + ',' + data2;
+			writeln(f,data);
 		end;
+		close(f);
 		
 		write('Masukkan nama File Buku Hilang: ');
 		readln(nama_file);
-		case nama_file of
-			'kehilangan.csv' :	begin
-									assign(f, 'kehilangan.csv');
-									rewrite(f);
-									n := length(aKehilangan) - 1;
-									for i:=0 to n do
-									begin
-										str(aKehilangan[i].ID_Buku_Hilang,data1);
-										aKehilangan[i].Tanggal_Laporan := StringToTanggal(data2);
-										data := aKehilangan[i].Username + ',' + data1 + ',' + data2;
-										writeln(f,data);
-									end;
-									close(f);
-								 end;
+		assign(f, nama_file);
+		rewrite(f);
+		n := length(aKehilangan) - 1;
+		for i:=0 to n do
+		begin
+			str(aKehilangan[i].ID_Buku_Hilang,data1);
+			aKehilangan[i].Tanggal_Laporan := StringToTanggal(data2);
+			data := aKehilangan[i].Username + ',' + data1 + ',' + data2;
+			writeln(f,data);
 		end;
+		close(f);
 		writeln(' ');
-		write('Data berhasil disimpan!');
+		writeln('Data berhasil disimpan!');
 	end;
 end.

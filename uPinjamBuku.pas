@@ -37,7 +37,7 @@ begin
     pinjam.ID_buku := id;
     pinjam.Tanggal_Peminjaman := StringToTanggal (stringtanggal);
     pinjam.Tanggal_Batas_Pengembalian := TambahHari(tanggal1, 7);
-    pinjam.Status_Pengembalian := belum;
+    pinjam.Status_Pengembalian := 'belum';
 
     SetLength(array_pinjam, Length(array_pinjam)+1);
     array_pinjam[High(array_pinjam)] := pinjam;

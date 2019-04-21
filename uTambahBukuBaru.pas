@@ -6,7 +6,7 @@ pada F09 - Menambahkan buku baru ke dalam sistem }
 { KAMUS }
 interface
 uses
-    uTipeData;
+    uTipeData,
     uCariBuku;
 
 procedure tambah_buku_baru (var array_buku : Arr_Buku);
@@ -23,7 +23,7 @@ begin
 
     // BLOK INPUT
 
-    writeln('Masukkan Informasi buku yang ditambahkan:')
+    writeln('Masukkan Informasi buku yang ditambahkan:');
     write('Masukkan id buku:' );
     readln(id_b);
     write('Masukkan judul buku: ');
@@ -55,6 +55,7 @@ begin
 
     writeln('Buku berhasil ditambahkan ke dalam sistem!');
 
+end;
 { Terminasi }
 
 end.

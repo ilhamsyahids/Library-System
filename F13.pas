@@ -12,136 +12,287 @@ implementation
 	var
 		f							: Text;
 		nama_file					: string;
-		data, data1, data2, data3	: string;
-		n							: integer;
+		CC 							: char;
+		input 						: string;
 	begin
+		{ LOAD FILE BUKU }
 		write('Masukkan nama File Buku: ');
 		readln(nama_file);
-		case nama_file of
-			'buku.csv' :   begin
-								assign(f, 'buku.csv');
-								reset(f);
-								n := 0;
-								if EOF(f) then
-								begin
-									writeln('File kosong.');
-								end else
-								begin
-									while (not(EOF(f))) do
-									begin
-										n := n + 1;
-										str(aBuku[n].ID_Buku,data1); str(aBuku[n].Jumlah_Buku,data2); str(aBuku[n].Tahun_Penerbit,data3);
-										data := data1 + ',' + aBuku[n].Judul_Buku + ',' + aBuku[n].Author + ',' + data2 + ',' + data3 + ',' + aBuku[n].Kategori;
-										readln(f,data);
-									end;
-									SetLength(aBuku,n);
-								end;
-								close(f);
-							end;
+		assign(f, nama_file);
+		reset(f);
+		SetLength(aBuku, 0);
+		while (not(EOF(f))) do
+		begin
+			SetLength(aBuku, Length(aBuku) + 1);
+			{ ID Buku }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			Val(input, aBuku[Length(aBuku)-1].ID_Buku);
+			{ Judul Buku }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aBuku[Length(aBuku)-1].Judul_Buku := input;
+			{ Author }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aBuku[Length(aBuku)-1].Author := input;
+			{ Jumlah Buku }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			Val(input, aBuku[Length(aBuku)-1].Jumlah_Buku);
+			{ Tahun Penerbit }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			Val(input, aBuku[Length(aBuku)-1].Tahun_Penerbit);
+			{ Kategori }
+			input := '';
+			Read (f, CC);
+			while (CC <> Chr(10)) and (CC <> Chr(13)) do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aBuku[Length(aBuku)-1].Kategori := input;
+			Read(f, CC);			{ Skip line ending }
+			if (CC = Chr(13)) then
+				Read(f, CC);		{ Skip CRLF (Windows), else LF saja (Unix) }
 		end;
+		close(f);
 						
+		{ LOAD FILE USER }
 		write('Masukkan nama File User: ');
 		readln(nama_file);
-		case nama_file of
-			'user.csv' :	begin
-								assign(f, 'user.csv');
-								reset(f);
-								n := 0;
-								if EOF(f) then
-								begin
-									writeln('File kosong.');
-								end else
-								begin
-									while (not(EOF(f))) do
-									begin
-										n := n + 1;
-										data := aUser[n].Nama + ',' + aUser[n].Alamat + ',' + aUser[n].Username + ',' + aUser[n].Password + ',' + aUser[n].Role;
-										readln(f,data);
-									end;
-									SetLength(aUser,n);
-								end;
-								close(f);
-							 end;
+		assign(f, nama_file);
+		reset(f);
+		SetLength(aUser, 0);
+		while (not(EOF(f))) do
+		begin
+			SetLength(aUser, Length(aUser) + 1);
+			{ Nama }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aUser[Length(aUser)-1].Nama := input;
+			{ Alamat }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aUser[Length(aUser)-1].Nama := input;
+			{ Username }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aUser[Length(aUser)-1].Nama := input;
+			{ Password }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aUser[Length(aUser)-1].Nama := input;
+			{ Role }
+			input := '';
+			Read (f, CC);
+			while (CC <> Chr(10)) and (CC <> Chr(13)) do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aUser[Length(aUser)-1].Nama := input;
+			
+			Read(f, CC);			{ Skip line ending }
+			if (CC = Chr(13)) then
+				Read(f, CC);		{ Skip CRLF (Windows), else LF saja (Unix) }
 		end;
-		
+		close(f);
+
+		{ LOAD FILE PEMINJAMAN }
 		write('Masukkan nama File Peminjaman: ');
-		read(nama_file);
-		case nama_file of
-			'peminjaman.csv' :	begin
-									assign(f, 'peminjaman.csv');
-									reset(f);
-									n := 0;
-									if EOF(f) then
-									begin
-										writeln('File kosong.');
-									end else
-									begin
-										while (not(EOF(f))) do
-										begin
-											n := n + 1;
-											str(aPeminjaman[n].ID_Buku,data1);
-											aPeminjaman[n].Tanggal_Peminjaman := StringToTanggal(data2); aPeminjaman[n].Tanggal_Batas_Pengembalian := StringToTanggal(data3);
-											data := aPeminjaman[n].Username + ',' + data1 + ',' + data2 + ',' + data3 + aPeminjaman[n].Status_Pengembalian;
-											readln(f,data);
-										end;
-										SetLength(aPeminjaman,n);
-									end;
-									close(f);
-								 end;
+		readln(nama_file);
+		assign(f, nama_file);
+		reset(f);
+		SetLength(aPeminjaman, 0);
+		while (not(EOF(f))) do
+		begin
+			SetLength(aPeminjaman, Length(aPeminjaman) + 1);
+			{ Nama }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aPeminjaman[Length(aPeminjaman)-1].Username := input;
+			{ ID Buku }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			Val(input, aPeminjaman[Length(aPeminjaman)-1].ID_Buku);
+			{ Tanggal Peminjaman }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aPeminjaman[Length(aPeminjaman)-1].Tanggal_Peminjaman := StringToTanggal(input);
+			{ Tanggal Batas Penegembalian }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aPeminjaman[Length(aPeminjaman)-1].Tanggal_Batas_Pengembalian := StringToTanggal(input);
+			{ Status Pengembalian }
+			input := '';
+			Read (f, CC);
+			while (CC <> Chr(10)) and (CC <> Chr(13)) do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aPeminjaman[Length(aPeminjaman)-1].Status_Pengembalian := input;
+			
+			Read(f, CC);			{ Skip line ending }
+			if (CC = Chr(13)) then
+				Read(f, CC);		{ Skip CRLF (Windows), else LF saja (Unix) }
 		end;
+		close(f);
 		
+		{ LOAD FILE PENGEMBALIAN }
 		write('Masukkan nama File Pengembalian: ');
 		readln(nama_file);
-		case nama_file of
-			'pengembalian.csv' :	begin
-										assign(f, 'pengembalian.csv');
-										reset(f);
-										n := 0;
-										if EOF(f) then
-										begin
-											writeln('File kosong.');
-										end else
-										begin
-											while (not(EOF(f))) do
-											begin
-												n := n + 1;
-												str(aPengembalian[n].ID_Buku,data1);
-												aPengembalian[n].Tanggal_Pengembalian := StringToTanggal(data2);
-												data := aPengembalian[n].Username + ',' + data1 + ',' + data2;
-												readln(f,data);
-											end;
-											SetLength(aPengembalian,n);
-										end;
-										close(f);
-									 end;
+		assign(f, nama_file);
+		reset(f);
+		SetLength(aPengembalian, 0);
+		while (not(EOF(f))) do
+		begin
+			SetLength(aPengembalian, Length(aPengembalian) + 1);
+			{ Username }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aPengembalian[Length(aPengembalian)-1].Username := input;
+			{ ID Buku }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			Val(input, aPengembalian[Length(aPengembalian)-1].ID_Buku);
+			{ Tanggal Peminjaman }
+			input := '';
+			Read (f, CC);
+			while (CC <> Chr(10)) and (CC <> Chr(13)) do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aPengembalian[Length(aPengembalian)-1].Tanggal_Pengembalian := StringToTanggal(input);
+			
+			Read(f, CC);			{ Skip line ending }
+			if (CC = Chr(13)) then
+				Read(f, CC);		{ Skip CRLF (Windows), else LF saja (Unix) }
 		end;
+		close(f);
 		
+		{ LOAD FILE KEHILANGAN }
 		write('Masukkan nama File Buku Hilang: ');
 		readln(nama_file);
-		case nama_file of
-			'kehilangan.csv' :	begin
-									assign(f, 'kehilangan.csv');
-									reset(f);
-									n := 0;
-									if EOF(f) then
-									begin
-										writeln('File kosong.');
-									end else
-									begin
-										while (not(EOF(f))) do
-										begin
-											n := n + 1;
-											str(aKehilangan[n].ID_Buku_Hilang,data1);
-											aKehilangan[n].Tanggal_Laporan := StringToTanggal(data2);
-											data := aKehilangan[n].Username + ',' + data1 + ',' + data2;
-											readln(f,data);
-										end;
-										SetLength(aKehilangan,n);
-									end;
-									close(f);
-								 end;
+		assign(f, nama_file);
+		reset(f);
+		SetLength(aKehilangan, 0);
+		while (not(EOF(f))) do
+		begin
+			SetLength(aKehilangan, Length(aKehilangan) + 1);
+			{ Username }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aKehilangan[Length(aKehilangan)-1].Username := input;
+			{ ID Buku }
+			input := '';
+			Read (f, CC);
+			while (CC <> ',') do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			Val(input, aKehilangan[Length(aKehilangan)-1].ID_Buku_Hilang);
+			{ Tanggal Peminjaman }
+			input := '';
+			Read (f, CC);
+			while (CC <> Chr(10)) and (CC <> Chr(13)) do 
+			begin
+				input := input + CC;
+				Read(f, CC);
+			end;
+			aKehilangan[Length(aKehilangan)-1].Tanggal_Laporan := StringToTanggal(input);
+			
+			Read(f, CC);			{ Skip line ending }
+			if (CC = Chr(13)) then
+				Read(f, CC);		{ Skip CRLF (Windows), else LF saja (Unix) }
 		end;
+		close(f);
+
 		writeln(' ');
-		write('File perpustakaan berhasil dimuat!');
+		writeln('File perpustakaan berhasil dimuat!');
 	end;
 end.
