@@ -9,53 +9,55 @@ uses
     uTipeData,
     uCariBuku;
 
-procedure tambah_buku_baru (var array_buku : Arr_Buku);
+    procedure tambah_buku_baru (var array_buku : Arr_Buku);
 
 { ALGORITMA }
 implementation
 
-procedure tambah_buku_baru (var array_buku : Arr_Buku);
+    procedure tambah_buku_baru (var array_buku : Arr_Buku);
 
-var
-    bukubaru : Buku;
+    var
+        bukubaru : Buku;
+        id, jumlah, tahun : Integer;
+        judul, pengarang, kategori : String;
 
-begin
+    begin
 
-    // BLOK INPUT
+        // BLOK INPUT
 
-    writeln('Masukkan Informasi buku yang ditambahkan:');
-    write('Masukkan id buku:' );
-    readln(id_b);
-    write('Masukkan judul buku: ');
-    readln(judul_buku_b);
-    write('Masukkan pengarang buku: ');
-    readln(pengarang_b);
-    write('Masukkan jumlah buku: ');
-    readln(jumlah_buku_b);
-    write('Masukkan tahun terbit buku: ');
-    readln(tahun_penerbit_b);
-    write('Masukkan kategori buku:');
-    readln(kategori_b);
-    { Penginputan buku baru }
+        writeln('Masukkan Informasi buku yang ditambahkan:');
+        write('Masukkan id buku:' );
+        readln(id);
+        write('Masukkan judul buku: ');
+        readln(judul);
+        write('Masukkan pengarang buku: ');
+        readln(pengarang);
+        write('Masukkan jumlah buku: ');
+        readln(jumlah);
+        write('Masukkan tahun terbit buku: ');
+        readln(tahun);
+        write('Masukkan kategori buku:');
+        readln(kategori);
+        { Penginputan buku baru }
 
-    bukubaru.ID_Buku        := id_b;
-    bukubaru.Judul_Buku     := judul_buku_b;
-    bukubaru.Author         := pengarang_b;
-    bukubaru.Jumlah_Buku    := jumlah_buku_b;
-    bukubaru.Tahun_Penerbit := tahun_penerbit_b;
-    bukubaru.Kategori       := kategori_b;
-    { Inisialisasi data untuk dimasukkan ke array_buku }
+        bukubaru.ID_Buku        := id;
+        bukubaru.Judul_Buku     := judul;
+        bukubaru.Author         := pengarang;
+        bukubaru.Jumlah_Buku    := jumlah;
+        bukubaru.Tahun_Penerbit := tahun;
+        bukubaru.Kategori       := kategori;
+        { Inisialisasi data untuk dimasukkan ke array_buku }
 
-    SetLength(array_buku, (Length(array_buku)+1));
-    { ^^ Penambahan elemen array untuk memasukkan rekaman 'bukubaru' }
-    array_buku[High(array_buku)] := bukubaru;
-    { ^^ Penambahan rekaman 'bukubaru' ke elemen akhir array_buku }
+        SetLength(array_buku, (Length(array_buku)+1));
+        { ^^ Penambahan elemen array untuk memasukkan rekaman 'bukubaru' }
+        array_buku[High(array_buku)] := bukubaru;
+        { ^^ Penambahan rekaman 'bukubaru' ke elemen akhir array_buku }
 
-    // BLOK OUTPUT
+        // BLOK OUTPUT
 
-    writeln('Buku berhasil ditambahkan ke dalam sistem!');
+        writeln('Buku berhasil ditambahkan ke dalam sistem!');
 
-end;
-{ Terminasi }
-
+    { Terminasi }
+    end;
+    
 end.

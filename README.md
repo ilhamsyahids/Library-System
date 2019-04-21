@@ -16,6 +16,12 @@ Berisi fungsi `cari(<daftar_buku>)`, fitur F03
 **uCariBukuTahunTerbit**
 Berisi fungsi `caritahunterbit(<daftar_buku>)`, fitur F04
 
+**uPinjamBuku**
+Berisi fungsi `pinjam_buku(<daftar_buku>, <daftar_pinjam>, <nama_user>)`, fitur F05
+
+**uBukuHilang**
+Berisi fungsi `bukuhilang(<daftar_buku>)`, fitur F06
+
 **uBukuHilang**
 Berisi fungsi `bukuhilang(<daftar_buku>)`, fitur F07
 
@@ -33,6 +39,9 @@ Berisi fungsi `riwayat(<daftar peminjaman>, <daftar_buku>)`, fitur F11
 
 **uStatistik**
 Berisi fungsi `statistik(<daftar penggunga>, <daftar_buku>)`, fitur F12
+
+**uBukuHilang**
+Berisi fungsi `cari_anggota(<daftar_user>)`, fitur F15
 
 ## Penjelasan singkat unit tambahan
 
