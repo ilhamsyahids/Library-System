@@ -53,7 +53,7 @@ begin
 					  end;
 	else
 		begin
-			writeln('Input salah!');
+			writeln('Masukan salah!');
 		end;
 	end;
 	until stop1 = true;
@@ -136,7 +136,7 @@ begin
 														  end;
 			else
 			begin
-				writeln('Masukkan salah');
+				writeln('Masukan salah');
 			end;
 		end;
 		until stop2;
@@ -207,7 +207,7 @@ begin
 														  end;
 			else
 			begin
-				writeln('Masukkan salah');
+				writeln('Masukan salah');
 			end;
 		end;
 		until stop2 = true;
