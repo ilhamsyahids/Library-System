@@ -3,14 +3,15 @@ program testProgram;
 uses
     uTipeData,
     uTanggal,
-    uLogin,
-    uRegister,
-    uCari,
-    uTambahJumlahBuku,
-    uRiwayat,
-    uStatistik,
-    F13,
-    F14;
+    uLogin,             // F01
+    uRegister,          // F02
+    uCari,              // F03
+    uPinjamBuku,        // F05
+    uTambahJumlahBuku,  // F10
+    uRiwayat,           // F11
+    uStatistik,         // F12
+    uLoadFile,          // F13
+    uSaveFile;          // F14
 
 var
     array_buku : Arr_Buku;
@@ -18,6 +19,7 @@ var
     array_peminjaman : Arr_Peminjaman;
     array_pengembalian : Arr_Pengembalian;
     array_hilang : Arr_Laporan_Buku_Hilang;
+    currentUser : String;
 
 begin
     SetLength(array_user, 4);
@@ -59,23 +61,23 @@ begin
     
     array_buku[1].id_buku := 2001;
     array_buku[1].judul_buku := '97 things every programmer should know';
-    array_buku[0].Author := 'Kelvin Henney';
+    array_buku[1].Author := 'Kelvin Henney';
     array_buku[1].jumlah_buku := 22;
-    array_buku[0].Tahun_Penerbit := 2010;
+    array_buku[1].Tahun_Penerbit := 2010;
     array_buku[1].kategori := 'Programming';
     
     array_buku[2].id_buku := 3753;
     array_buku[2].judul_buku := 'Laskar Pelangi';
-    array_buku[0].Author := 'Andrea Hirata';
+    array_buku[2].Author := 'Andrea Hirata';
     array_buku[2].jumlah_buku := 11;
-    array_buku[0].Tahun_Penerbit := 2005;
+    array_buku[2].Tahun_Penerbit := 2005;
     array_buku[2].kategori := 'Sastra';
     
     array_buku[3].id_buku := 0532;
     array_buku[3].judul_buku := '0532 Reasons why Ozer is Amazing';
-    array_buku[0].Author := 'ozer0532';
+    array_buku[3].Author := 'ozer0532';
     array_buku[3].jumlah_buku := 9;
-    array_buku[0].Tahun_Penerbit := 2350;
+    array_buku[3].Tahun_Penerbit := 2350;
     array_buku[3].kategori := 'Sejarah';
     
 
@@ -115,12 +117,29 @@ begin
     array_hilang[0].Username := 'TuanYonPti';
     array_hilang[0].ID_Buku_Hilang := 3753;
     array_hilang[0].Tanggal_Laporan := StringToTanggal('21/04/2019');
-
-    save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
+    
     load_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
+    
+    WriteLn(array_buku[0].Judul_Buku);
+    WriteLn(array_buku[0].Author);
+    WriteLn(array_buku[1].Judul_Buku);
+    WriteLn(array_buku[1].Author);
+    WriteLn(array_buku[2].Judul_Buku);
+    WriteLn(array_buku[2].Author);
+    WriteLn(array_buku[3].Judul_Buku);
+    WriteLn(array_buku[3].Author);
+    currentUser := login(array_user);
 
+    {
     WriteLn(array_buku[0].Judul_Buku);
     WriteLn(array_buku[1].Judul_Buku);
     WriteLn(array_buku[2].Judul_Buku);
     WriteLn(array_buku[3].Judul_Buku);
+    }
+
+    pinjam_buku(array_buku, array_peminjaman, currentUser);
+
+    WriteLn(array_peminjaman[4].ID_Buku);
+
+    save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
 end.

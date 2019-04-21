@@ -10,11 +10,11 @@ uses
     uTipeData,
     uCariBuku;
 
-procedure pinjam_buku (var array_buku : Arr_Buku; array_pinjam : Arr_Peminjaman ; nama_user : string);
+procedure pinjam_buku (var array_buku : Arr_Buku; var array_pinjam : Arr_Peminjaman ; nama_user : string);
 
 
 implementation
-procedure pinjam_buku (var array_buku : Arr_Buku; array_pinjam : Arr_Peminjaman ; nama_user : string);
+procedure pinjam_buku (var array_buku : Arr_Buku; var array_pinjam : Arr_Peminjaman ; nama_user : string);
 
 
 var

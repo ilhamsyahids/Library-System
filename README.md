@@ -40,6 +40,10 @@ Berisi fungsi `riwayat(<daftar peminjaman>, <daftar_buku>)`, fitur F11
 **uStatistik**
 Berisi fungsi `statistik(<daftar penggunga>, <daftar_buku>)`, fitur F12
 
+**uLoadFile**
+
+**uSaveFile**
+
 **uBukuHilang**
 Berisi fungsi `cari_anggota(<daftar_user>)`, fitur F15
 

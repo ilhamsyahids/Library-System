@@ -6,18 +6,18 @@ unit uLogin;
 // Kamus
 interface
     uses uTipeData, uHashing;
-    procedure login(array_user : Arr_User);
+    function login(array_user : Arr_User) : String;
 
 // Algoritma
 implementation
-    procedure login(array_user : Arr_User);
+    function login(array_user : Arr_User) : String;
     // Meminta authorization berupa username dan password dari pengakses
     // variabel array_user diisi dengan daftar user pada program utama
 
         var
             username : String;
             password : String;
-            found,wrong : Boolean;
+            found : Boolean;
             N,i : Integer;
             
         begin
@@ -29,6 +29,7 @@ implementation
             repeat
                 write('Masukkan password: ');
                 inputpass(password);
+                WriteLn(password);
                 i := 0;    
 
                 //Ketika belum ketemu dan pencarian belum selesai
@@ -48,5 +49,6 @@ implementation
                     
                 end;
             until (found);
+            login := username;
     end;
 end.
