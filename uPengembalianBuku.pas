@@ -8,6 +8,7 @@ interface
 uses
     uTanggal,
     uTipeData,
+    uDenda,
     uCariBuku;
 
 procedure kembalikan_buku (var array_buku : Arr_Buku; var array_pinjam : Arr_Peminjaman; var array_kembali : Arr_Pengembalian; nama_user : string);
@@ -25,6 +26,7 @@ var
     buku_dikembalikan : Pengembalian;
     i : Integer;
     found : Boolean;
+    haridenda : Integer;
 
 begin 
     // Blok Input
@@ -62,10 +64,13 @@ begin
     write('Masukkan tanggal hari ini: ');
     readln(string_tanggalkembali);
 
-    if (IsLebihTelat(StringToTanggal(string_tanggalkembali), array_pinjam[idx].Tanggal_Batas_Pengembalian)) then
-        WriteLn('Anda terlambat mengembalikan buku')
-    else
+    if (IsLebihTelat(StringToTanggal(string_tanggalkembali), array_pinjam[idx].Tanggal_Batas_Pengembalian)) then begin
+        WriteLn('Anda terlambat mengembalikan buku');
+        haridenda := hitunghari(StringToTanggal(string_tanggalkembali), array_pinjam[idx].Tanggal_Batas_Pengembalian);
+        Writeln('Anda terkena denda ', 2000*haridenda, '.');
+    end else begin
         writeln('Terima kasih sudah meminjam.');
+    end;
 
     buku_dikembalikan.Username := nama_user;
     buku_dikembalikan.ID_Buku := id;
