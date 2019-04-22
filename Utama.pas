@@ -27,7 +27,7 @@ var
 
 	stop1, stop2 : boolean;
 	pil1, pil2, keluar, konfirmasi : string;
-	username : user;
+	username : string;
 
 begin
 	stop1 := false;
@@ -46,20 +46,19 @@ begin
 	case pil1 of
 	'1' {Register}	: begin
 						register(array_user);
-						stop1 := true;
 					  end;
 	'2' {Login}		: begin
-						login(array_user);
+						username := login(array_user);
 						stop1 := true;
 					  end;
 	else
 		begin
-			writeln('Input salah!');
+			writeln('Masukan salah!');
 		end;
 	end;
-	until stop1;
+	until stop1 = true;
 	
-	if username.role = 'Admin' then
+	if username = 'Admin' then
 	begin
 		repeat
 		writeln('Menu Utama');
@@ -137,12 +136,12 @@ begin
 														  end;
 			else
 			begin
-				writeln('Masukkan salah');
+				writeln('Masukan salah');
 			end;
 		end;
 		until stop2;
 
-	end else if username.role = 'Pengunjung' then
+	end else if username = 'Pengunjung' then
 	begin
 		repeat
 		writeln('Menu Utama');
@@ -163,13 +162,13 @@ begin
 															CariTahunTerbit(array_buku);
 														  end;
 		'3' {Peminjaman Buku}							: begin
-															pinjam_buku(array_buku, array_pinjam, username.Nama);
+															pinjam_buku(array_buku, array_pinjam, username);
 														  end;
 		'4' {Pengembalian Buku}							: begin
-															kembalikan_buku(array_buku, array_pinjam, array_kembali, username.Nama);
+															kembalikan_buku(array_buku, array_pinjam, array_kembali, username);
 														  end;
 		'5' {Laporkan Buku yang Hilang}					: begin
-															bukuhilang(array_buku, array_hilang, username.Nama);
+															bukuhilang(array_buku, array_hilang, username);
 														  end;
 		'6' {Keluar}									: begin
 															writeln('Apakah anda mau melakukan penyimpanan file yang sudah dilakukan (Y/N)?');
@@ -208,10 +207,10 @@ begin
 														  end;
 			else
 			begin
-				writeln('Masukkan salah');
+				writeln('Masukan salah');
 			end;
 		end;
-		until stop2;
+		until stop2 = true;
 	end;
 
 	writeln('Berhasil keluar dari program. Semoga hari anda menyenangkan!');
