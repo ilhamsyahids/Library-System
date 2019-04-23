@@ -111,12 +111,8 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
-<<<<<<< HEAD
                     WriteLn('$ pinjam_buku');
-                    pinjam_buku(array_buku,array_pinjam,Pelaku.Nama); 
-=======
                     pinjam_buku(array_buku,array_pinjam,Pelaku.Username); 
->>>>>>> d6900859aa1e252260e20b5a576813f3397b4ef1
                     WriteLn();
                 end;
             'kembalikan_buku' :                                         
