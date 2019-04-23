@@ -15,7 +15,15 @@ uses
 implementation
 
     procedure tambah_buku_baru (var array_buku : Arr_Buku);
+    { Prosedur untuk menambahkan buku baru ke dalam sistem }
+    { I.S. Masukan berupa informasi buku baru berupa ID, judul, 
+    pengarang, jumlah, tahun terbit, serta kategori buku. }
+    { F.S. Buku baru dimasukkan ke dalam sistem dan pesan 
+    penerimaan akan muncul sebagai penanda }
 
+    { Catatan :
+    array_buku  : Daftar buku yang terdaftar dalam sistem }
+    
     var
         bukubaru : Buku;
         id, jumlah, tahun : Integer;
