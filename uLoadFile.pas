@@ -9,6 +9,9 @@ interface
 implementation
 	procedure load_file (var aBuku : Arr_Buku; var aUser : Arr_User; var aPeminjaman : Arr_Peminjaman; var aPengembalian : Arr_Pengembalian;
 					     var aKehilangan : Arr_Laporan_Buku_Hilang);
+	{ Memuat file-file database kedalam daftar pada memory }
+	{ I.S. Diberikan nama file database tiap daftar }
+	{ F.S. Database termuat dalam memory }
 	var
 		f							: Text;
 		nama_file					: string;
