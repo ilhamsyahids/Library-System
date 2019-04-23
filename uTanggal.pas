@@ -25,11 +25,14 @@ interface
 implementation
 
     function IsKhabisat (tahun : Integer) : Boolean;
+    { Mengecek bila tahun yang di input adalah tahun khabisat, bernilai true bila benar }
         begin
             IsKhabisat := ((tahun mod 400 = 0) or (tahun mod 100 <> 0)) and (tahun mod 4 = 0);
         end;
 
     function SumTanggalBulan (b : Integer; tahunKhabisat : Boolean) : Integer;
+    { Menjumlahkan hari hari pada bulan sebelum b
+      ( Misal: Februari -> 31; Maret -> 59/60 ) }
         var
             add : Integer;
             Bulan : Integer;
@@ -98,6 +101,8 @@ implementation
         end;
 
     procedure TanggalToBulan (var tgl, bulan : Integer; khabisat : Boolean);
+    { Mengubah jumlah hari (variabel tanggal) menjadi paduan tanggal dan bulan
+      (dengan asumsi jumlah hari ada pada tahun yang sama) }
         begin
             if (tgl > 31) then                                      // Januari
             begin bulan := bulan + 1; tgl := tgl - 31;
@@ -127,7 +132,7 @@ implementation
         end;
 
     function StringToTanggal (input : String) : Tanggal;
-        { Input string berbentuk DD/MM/YYYY }
+        { Mengubah tipe string menjadi tanggal, Input string berbentuk DD/MM/YYYY }
         var
             output : Tanggal;
             temp : Integer;
@@ -156,7 +161,7 @@ implementation
         end;
 
     function TanggalToString (input : Tanggal) : String;
-        { Output string berbentuk DD/MM/YYYY }
+        { Mengubah tipe tanggal menjadi string, Output string berbentuk DD/MM/YYYY }
         var
             output : String;
             temp : String;
@@ -178,6 +183,7 @@ implementation
         end;
 
     function TambahHari (tgl : Tanggal; tambahan : Integer) : Tanggal;
+    { Mencari tanggal yang merupakan 'tambahan' hari setelah 'tgl' }
         var
             tglBr : Tanggal;
             add : Integer;
@@ -212,6 +218,7 @@ implementation
         end;
 
     function IsLebihTelat (tgl1, tgl2 : Tanggal) : Boolean;
+    { Mengecek bila tgl1 lebih telat dari tgl2 }
         var
             add1, add2 : Integer;
         begin
