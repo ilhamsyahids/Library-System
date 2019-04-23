@@ -62,11 +62,13 @@ begin
                 if (role = 1) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ register');
                     register(array_user);
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ register');
                     WriteLn('Maaf Anda bukan Admin');
                     WriteLn();
                 end;
@@ -74,25 +76,28 @@ begin
                 if isLogin then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ login');
                     WriteLn('Anda sudah login');
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ login');
                     login(array_user, Pelaku);
-                    WriteLn(Pelaku.Role);
                     WriteLn();
                     isLogin := True;
                 end;
             'cari' : begin
                 ClrScr;
                 WriteLn('================================================================================');
+                WriteLn('$ cari');
                 Cari(array_buku);
                 WriteLn();
             end;
             'caritahunterbit' : begin
                 ClrScr;
                 WriteLn('================================================================================');
+                WriteLn('$ caritahunterbit');
                 CariTahunTerbit(array_buku);
                 WriteLn();
             end;
@@ -100,11 +105,13 @@ begin
                 if (role <> 0) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ pinjam_buku');
                     WriteLn('Maaf, hanya untuk pengguna yang sudah login.');
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ pinjam_buku');
                     pinjam_buku(array_buku,array_pinjam,Pelaku.Nama); 
                     WriteLn();
                 end;
@@ -112,11 +119,13 @@ begin
                 if (role <> 0) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ kembalikan_buku');
                     WriteLn('Maaf, hanya untuk pengguna yang sudah login.');
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ kembalikan_buku');
                     kembalikan_buku(array_buku,array_pinjam,array_kembali,Pelaku.Nama);
                     WriteLn();
                 end;
@@ -124,11 +133,13 @@ begin
                 if (role <> 0) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ lapor_hilang');
                     WriteLn('Maaf, hanya untuk pengguna yang sudah login.');
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ lapor_hilang');
                     bukuhilang(array_buku,array_hilang,Pelaku.Nama);
                     WriteLn();
                 end;
@@ -136,11 +147,13 @@ begin
                 if (role = 1) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ lihat_laporan');
                     laporanbukuhilang(array_hilang);
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ lihat_laporan');
                     WriteLn('Maaf Anda bukan Admin');
                     WriteLn();
                 end;
@@ -148,11 +161,13 @@ begin
                 if (role = 1) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ tambah_buku');
                     tambah_buku_baru(array_buku);
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ tambah_buku');
                     WriteLn('Maaf Anda bukan Admin');
                     WriteLn();
                 end;
@@ -160,11 +175,13 @@ begin
                 if (role = 1) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ tambah_jumlah_buku');
                     tambah_jumlah_buku(array_buku);
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ tambah_jumlah_buku');
                     WriteLn('Maaf Anda bukan Admin');
                     WriteLn();
                 end;
@@ -172,11 +189,13 @@ begin
                 if (role = 1) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ riwayat');
                     riwayat(array_pinjam,array_buku);
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ riwayat');
                     WriteLn('Maaf Anda bukan Admin');
                     WriteLn();
                 end;
@@ -184,17 +203,20 @@ begin
                 if (role = 1) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ statistik');
                     statistik(array_user,array_buku);
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ statistik');
                     WriteLn('Maaf Anda bukan Admin');
                     WriteLn();
                 end;
             'save' : begin
                 ClrScr;
                 WriteLn('================================================================================');
+                WriteLn('$ save');
                 save_file(array_buku,array_user,array_pinjam,array_kembali,array_hilang);
                 WriteLn();
             end;
@@ -202,28 +224,28 @@ begin
                 if (role = 1) then begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ cari_anggota');
                     cari_anggota(array_user);
                     WriteLn();
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ cari_anggota');
                     WriteLn('Maaf Anda bukan Admin');
                     WriteLn();
                 end;
             'exit' : begin
                 ClrScr;
                 WriteLn('================================================================================');
+                WriteLn('$ exit');
                 Write('Apakah anda mau melakukan penyimpanan file yang sudah dilakukan (Y/N) ? ');
                 ReadLn(jawab);
                 WriteLn();
                 if (jawab = 'Y') then begin
-                    ClrScr;
-                    WriteLn('================================================================================');
                     save_file(array_buku,array_user,array_pinjam,array_kembali,array_hilang);
                     jalan := False;
                 end else begin
                     ClrScr;
-                    WriteLn('================================================================================');
                     jalan := False;
                 end;
             end;
