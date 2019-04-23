@@ -127,6 +127,7 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ kembalikan_buku');
                     kembalikan_buku(array_buku,array_pinjam,array_kembali,Pelaku.Username);
                     WriteLn();
                 end;
@@ -140,6 +141,7 @@ begin
                 end else begin { Pengguna yang sudah login}
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ lapor_hilang');
                     bukuhilang(array_buku,array_hilang,Pelaku.Username);
                     WriteLn();
                 end;
