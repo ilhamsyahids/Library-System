@@ -9,6 +9,9 @@ interface
 implementation
 	procedure save_file (var aBuku : Arr_Buku; var aUser : Arr_User; var aPeminjaman : Arr_Peminjaman; var aPengembalian : Arr_Pengembalian;
 						 var aKehilangan : Arr_Laporan_Buku_Hilang);
+	{ Menyimpan dari daftar pada memory ke file-file database }
+	{ I.S. Diberikan nama file database tiap daftar untuk disimpan }
+	{ F.S. Database dari memory tersimpan pada file-file yang ditentukan }
 	var
 		f						: text;
 		nama_file					: string;
