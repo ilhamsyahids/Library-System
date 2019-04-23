@@ -111,8 +111,12 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
+<<<<<<< HEAD
                     WriteLn('$ pinjam_buku');
                     pinjam_buku(array_buku,array_pinjam,Pelaku.Nama); 
+=======
+                    pinjam_buku(array_buku,array_pinjam,Pelaku.Username); 
+>>>>>>> d6900859aa1e252260e20b5a576813f3397b4ef1
                     WriteLn();
                 end;
             'kembalikan_buku' :                                         
@@ -125,8 +129,7 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
-                    WriteLn('$ kembalikan_buku');
-                    kembalikan_buku(array_buku,array_pinjam,array_kembali,Pelaku.Nama);
+                    kembalikan_buku(array_buku,array_pinjam,array_kembali,Pelaku.Username);
                     WriteLn();
                 end;
             'lapor_hilang' :
@@ -139,8 +142,7 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
-                    WriteLn('$ lapor_hilang');
-                    bukuhilang(array_buku,array_hilang,Pelaku.Nama);
+                    bukuhilang(array_buku,array_hilang,Pelaku.Username);
                     WriteLn();
                 end;
             'lihat_laporan' :

@@ -1,0 +1,13 @@
+*.lps
+*.compiled
+*.[oa]
+*.ppu
+*.rst
+*.cgi
+*.exe
+*.log
+*.bak*
+*.o
+fp.ini
+fp.cfg
+fp.dsk

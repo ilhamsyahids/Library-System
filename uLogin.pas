@@ -36,8 +36,9 @@ implementation
                     if (array_user[i].Username = username) and (array_user[i].Password = Generate224(password)) then begin
                         WriteLn('Selamat datang ', array_user[i].nama, '!');
                         found := true;
-                    end;
-                    i := i+1;
+                    end
+                    else
+                        i := i+1;
                 end;
 
                 if not(found) then begin
