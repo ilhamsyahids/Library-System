@@ -16,10 +16,13 @@ type
     state = array [0..4, 0..4] of QWord;
 
 function Generate224 (input : String) : String;
+function Generate256 (input : String) : String;
+function Generate384 (input : String) : String;
+function Generate512 (input : String) : String;
+function CheckIntegrity (input, hash : String; key : Integer) : Boolean;
 
 implementation
 
-{ Fungsi pangkat: x^n }
 function Pow(x, n : QWord) : QWord;
 var i : Integer; out : QWord;
 begin
@@ -29,7 +32,6 @@ begin
     Pow := out;
 end;
 
-{ Mengubah bentuk string hexadecimal menjadi angka equivalennya }
 function StringToHex(s : string) : QWord;
 var
     i : Integer;
@@ -48,13 +50,11 @@ begin
     StringToHex := out;
 end;
 
-{ Merotasikan bit pada x sebanyak n (dengan asumsi n < 64) }
 function Rot(x : QWord; n : Byte) : QWord;
 begin
     Rot := (x << n) or (x >> (64-n));
 end;
 
-{ Inti loop hashing dari Keccak }
 procedure KeccakF1600 (var A : state);
 const
     RC : array [0..23] of String = ('0000000000000001', '0000000000008082', '800000000000808a',
@@ -123,7 +123,6 @@ begin
 
 end;
 
-{ Main function dari Keccak dengan sedikit perubahan untuk mewadahi SHA3 }
 function Keccak1600 (r, c : Integer; m : String) : String;
 var
     S : state;
@@ -200,7 +199,6 @@ begin
     Keccak1600 := Z;
 end;
 
-{ Fungsi untuk men-generate string SHA3-224 dari sebuah string }
 function Generate224 (input : String) : String;
 var
     genHex, outputHex : String;
@@ -213,6 +211,58 @@ begin
         outputHex := outputHex + HexStr(ord(genHex[i]), 2);
     end;
     Generate224 := Lowercase(outputHex);
+end;
+
+function Generate256 (input : String) : String;
+var
+    genHex, outputHex : String;
+    i : Integer;
+begin
+    genHex := Keccak1600(1088, 512, input);
+    outputHex := '';
+    for i := 1 to Length(genHex) do
+    begin
+        outputHex := outputHex + HexStr(ord(genHex[i]), 2);
+    end;
+    Generate256 := Lowercase(outputHex);
+end;
+
+function Generate384 (input : String) : String;
+var
+    genHex, outputHex : String;
+    i : Integer;
+begin
+    genHex := Keccak1600(832, 768, input);
+    outputHex := '';
+    for i := 1 to Length(genHex) do
+    begin
+        outputHex := outputHex + HexStr(ord(genHex[i]), 2);
+    end;
+    Generate384 := Lowercase(outputHex);
+end;
+
+function Generate512 (input : String) : String;
+var
+    genHex, outputHex : String;
+    i : Integer;
+begin
+    genHex := Keccak1600(576, 1024, input);
+    outputHex := '';
+    for i := 1 to Length(genHex) do
+    begin
+        outputHex := outputHex + HexStr(ord(genHex[i]), 2);
+    end;
+    Generate512 := Lowercase(outputHex);
+end;
+
+function CheckIntegrity (input, hash : String; key : Integer) : Boolean;
+begin
+    case (key) of
+        224 : CheckIntegrity := hash = Generate224(input);
+        256 : CheckIntegrity := hash = Generate256(input);
+        384 : CheckIntegrity := hash = Generate384(input);
+        512 : CheckIntegrity := hash = Generate512(input);
+    end;
 end;
 
 end.
