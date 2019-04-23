@@ -3,40 +3,40 @@ Program Main;
 
 uses  
     crt,
-    uTipeData,
-	uRegister, 			{F01}
+    uTipeData,              
+	uRegister, 			    {F01}
 	uLogin, 				{F02}
-	uCari, 				{F03}
+	uCari, 				    {F03}
 	uCariBukuTahunTerbit, 	{F04}
 	uPinjamBuku, 			{F05}
 	uPengembalianBuku,		{F06}
 	uBukuHilang, 			{F07}
-	uLaporanBukuHilang,	{F08}
+	uLaporanBukuHilang,	    {F08}
 	uTambahBukuBaru, 		{F09}
-	uTambahJumlahBuku, 	{F10}
+	uTambahJumlahBuku, 	    {F10}
 	uRiwayat, 				{F11}
 	uStatistik, 			{F12}
-	uLoadFile, 			{F13}
-	uSaveFile, 			{F14}
+	uLoadFile, 			    {F13}
+	uSaveFile,   			{F14}
 	uCariAnggota;			{F15}
 
 var
-    Pelaku : User;
-    role : Integer;
-    jalan : Boolean;
+    Pelaku  : User;
+    role    : Integer;
+    jalan   : Boolean;
     isLogin : Boolean;
     command : String;
-    jawab : String;
+    jawab   : String;
 
-    array_buku : Arr_buku;
-	array_user : Arr_user;
-	array_pinjam : Arr_Peminjaman;
-	array_kembali : Arr_Pengembalian;
-	array_hilang : Arr_Laporan_Buku_Hilang;
+    array_buku      : Arr_buku;
+	array_user      : Arr_user;
+	array_pinjam    : Arr_Peminjaman;
+	array_kembali   : Arr_Pengembalian;
+	array_hilang    : Arr_Laporan_Buku_Hilang;
 
 
 begin
-    jalan := True;
+    jalan   := True;
     isLogin := False;
     ClrScr;
     WriteLn('================================================================================');
@@ -44,6 +44,7 @@ begin
     Pelaku.Nama := '';
 
     while jalan do begin
+        // Inisiasi role
         if isLogin then begin
             if (Pelaku.Role = 'Admin') then begin
                 role := 1;
@@ -54,6 +55,7 @@ begin
             role := 99;
         end;
 
+        // Perintah
         Write('$ ');
         ReadLn(command);
 
@@ -65,7 +67,7 @@ begin
                     WriteLn('$ register');
                     register(array_user);
                     WriteLn();
-                end else begin
+                end else begin { Bukan Admin}
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ register');
@@ -79,7 +81,7 @@ begin
                     WriteLn('$ login');
                     WriteLn('Anda sudah login');
                     WriteLn();
-                end else begin
+                end else begin { Belum Login }
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ login');
@@ -108,7 +110,7 @@ begin
                     WriteLn('$ pinjam_buku');
                     WriteLn('Maaf, hanya untuk pengguna yang sudah login.');
                     WriteLn();
-                end else begin
+                end else begin { Pengguna yang sudah login}
                     ClrScr;
                     WriteLn('================================================================================');
                     pinjam_buku(array_buku,array_pinjam,Pelaku.Username); 
@@ -134,7 +136,7 @@ begin
                     WriteLn('$ lapor_hilang');
                     WriteLn('Maaf, hanya untuk pengguna yang sudah login.');
                     WriteLn();
-                end else begin
+                end else begin { Pengguna yang sudah login}
                     ClrScr;
                     WriteLn('================================================================================');
                     bukuhilang(array_buku,array_hilang,Pelaku.Username);
@@ -147,7 +149,7 @@ begin
                     WriteLn('$ lihat_laporan');
                     laporanbukuhilang(array_hilang);
                     WriteLn();
-                end else begin
+                end else begin { Selain Admin }
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ lihat_laporan');
@@ -161,7 +163,7 @@ begin
                     WriteLn('$ tambah_buku');
                     tambah_buku_baru(array_buku);
                     WriteLn();
-                end else begin
+                end else begin { Selain Admin }
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ tambah_buku');
@@ -175,7 +177,7 @@ begin
                     WriteLn('$ tambah_jumlah_buku');
                     tambah_jumlah_buku(array_buku);
                     WriteLn();
-                end else begin
+                end else begin { Selain Admin }
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ tambah_jumlah_buku');
@@ -189,7 +191,7 @@ begin
                     WriteLn('$ riwayat');
                     riwayat(array_pinjam,array_buku);
                     WriteLn();
-                end else begin
+                end else begin { Selain Admin }
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ riwayat');
@@ -203,7 +205,7 @@ begin
                     WriteLn('$ statistik');
                     statistik(array_user,array_buku);
                     WriteLn();
-                end else begin
+                end else begin { Selain Admin }
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ statistik');
@@ -224,7 +226,7 @@ begin
                     WriteLn('$ cari_anggota');
                     cari_anggota(array_user);
                     WriteLn();
-                end else begin
+                end else begin { Selain Admin }
                     ClrScr;
                     WriteLn('================================================================================');
                     WriteLn('$ cari_anggota');
@@ -241,7 +243,7 @@ begin
                 if (jawab = 'Y') then begin
                     save_file(array_buku,array_user,array_pinjam,array_kembali,array_hilang);
                     jalan := False;
-                end else begin
+                end else begin { 'N' }
                     ClrScr;
                     jalan := False;
                 end;

@@ -14,13 +14,14 @@ interface
 implementation
     // Procedure sort array of string
     procedure sort_string(array_string : Arr_String);
-        // variabel array_string diisi dengan daftar judul buku
-        // pada procedure Cari
+        // variabel array_string diisi dengan daftar string
+
         var
             i, j, n : Integer;
-            temp : String;
+            temp    : String;
 
         begin
+            // implementasi sort
             n := Length(array_string);
             if (n>1) then begin
                 for i:=0 to n-1 do begin
@@ -42,23 +43,23 @@ implementation
         // variabel array_buku diisi dengan daftar buku
         // pada program utama
         var
-            kat : String;
-            judul : Arr_String;
-            i, j, n, m, nk : Integer;
-            ada, valid : Boolean;
+            kat             : String;
+            judul           : Arr_String;
+            i, j, n, m, nk  : Integer;
+            ada, valid      : Boolean;
 
         begin
-            valid := False;
-            ada := False;
-            i := 0;
-            n := Length(array_Buku);
+            valid   := False;
+            ada     := False;
+            i       := 0;
+            n       := Length(array_Buku);
             
             // Skema validasi untuk input kategori
             repeat
                 Write('Masukkan kategori: '); ReadLn(kat);
                 if (kat = 'sastra') or (kat = 'programming') or (kat = 'sains') or (kat = 'manga') or (kat = 'sejarah') then begin
                     valid := True;                
-                end else begin
+                end else begin { Input salah }
                     Writeln('Kategori ', kat, ' tidak valid');
                 end;
             until valid;
@@ -90,9 +91,8 @@ implementation
             end;
 
             // Tidak ada buku
-            if not(ada) then
-            begin
-            WriteLn('Tidak ada buku dalam kategori ini.');
+            if not(ada) then begin
+                WriteLn('Tidak ada buku dalam kategori ini.');
             end;
         end;
 end.

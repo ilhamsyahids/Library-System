@@ -15,18 +15,21 @@ implementation
     // variabel array_user diisi dengan daftar user pada program utama
 
         var
-            username : String;
-            password : String;
-            found : Boolean;
-            N,i : Integer;
+            username    : String;
+            password    : String;
+            found       : Boolean;
+            N,i         : Integer;
             
         begin
+            // Input username
             write('Masukkan username: ');
             readln(username);
             N := length(array_user);
             found := False;
             
+            // Skema perulangan
             repeat
+                // Input password
                 write('Masukkan password: ');
                 inputpass(password);
                 i := 0;    
@@ -41,6 +44,7 @@ implementation
                         i := i+1;
                 end;
 
+                // Validasi
                 if not(found) then begin
                     WriteLn('Username / password salah! Silakan coba lagi.');
                     WriteLn();
@@ -49,6 +53,8 @@ implementation
                     
                 end;
             until (found);
+
+            // Inisiasi user ke LoginUser
             LoginUser := array_user[i];
     end;
 end.
