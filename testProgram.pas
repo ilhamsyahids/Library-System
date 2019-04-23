@@ -26,6 +26,7 @@ var
     array_pengembalian : Arr_Pengembalian;
     array_hilang : Arr_Laporan_Buku_Hilang;
     currentUser : String;
+    role : String;
 
 begin
     SetLength(array_user, 4);
@@ -127,7 +128,8 @@ begin
 
     load_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
 
-    currentUser := login(array_user);
+    currentUser := login(array_user, role);
+                        WriteLn(role);
 
     cari_anggota(array_user);
 
