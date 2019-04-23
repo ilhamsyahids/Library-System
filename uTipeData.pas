@@ -61,7 +61,7 @@ type
 
     Arr_Laporan_Buku_Hilang = array of Laporan_Buku_Hilang;
 
-    // Tipe Array 
+    { Tipe Array }
     Arr_String = array of String;
     Arr_Integer = array of Integer;
     Arr_Boolean = array of Boolean;

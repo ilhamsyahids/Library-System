@@ -13,7 +13,9 @@ interface
 // ALGORITMA
 implementation
 	procedure cari_anggota (var cariUser : Arr_User);
-	
+	{ Mencari data anggota dari usernamenya }
+	{ I.S. Admin menginput username yang datanya ingin dicari }
+	{ F.S. Ditampilkaan nama dan alamat user }
 	var
 		nama_user			: string;
 		i, n				: integer;

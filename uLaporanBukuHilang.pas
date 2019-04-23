@@ -10,14 +10,17 @@ interface
         uTipeData;
 
     procedure laporanbukuhilang (array_bukuhilang : Arr_Laporan_Buku_Hilang);
+    
+
 
 { ALGORITMA }
 implementation
     procedure laporanbukuhilang (array_bukuhilang : Arr_Laporan_Buku_Hilang);
-    { Menampilkan laporan buku hilang yang berisi daftar buku 
-    berisi id buku, judul buku, serta tanggal buku hilang dengan 
-    variabel array_bukuhilang sebagai daftar buku hilang dengan 
-    jenis Arr_Laporan_Buku_Hilang }
+    { Prosedur untuk menampilkan laporan buku yang hilang }
+    { I.S. Tidak ada }
+    { F.S. Laporan berupa daftar buku hilang muncul dengan format:
+    <ID_buku> | <Judul_buku> | <Tanggal_pelaporan_buku_hilang> }
+
     var
         i, N_bukuhilang : Integer;
         
@@ -30,9 +33,6 @@ implementation
             array_bukuhilang[i].Username, ' | ', 
             TanggalToString(array_bukuhilang[i].Tanggal_Laporan));
         end;
-
-        { CATATAN : Di uTipeData, tambahkan Judul_Buku_Hilang
-        di record Laporan_Buku_Hilang }
+        { Menampilkan daftar buku yang telah dilaporkan hilang }
     end;
-
 end.
