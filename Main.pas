@@ -113,6 +113,7 @@ begin
                 end else begin { Pengguna yang sudah login}
                     ClrScr;
                     WriteLn('================================================================================');
+                    WriteLn('$ pinjam_buku');
                     pinjam_buku(array_buku,array_pinjam,Pelaku.Username); 
                     WriteLn();
                 end;

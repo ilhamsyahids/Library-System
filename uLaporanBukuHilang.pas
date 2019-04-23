@@ -24,8 +24,7 @@ implementation
     begin
         N_bukuhilang := Length(array_bukuhilang);
         { Inisialisasi }
-        
-        WriteLn(array_bukuhilang[N_bukuhilang].Username);
+        WriteLn('Buku yang hilang :');
         for i := 0 to N_bukuhilang - 1 do begin
             WriteLn(array_bukuhilang[i].ID_Buku_Hilang, ' | ', 
             array_bukuhilang[i].Username, ' | ', 
