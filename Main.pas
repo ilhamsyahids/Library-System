@@ -80,7 +80,6 @@ begin
                     ClrScr;
                     WriteLn('================================================================================');
                     login(array_user, Pelaku);
-                    WriteLn(Pelaku.Role);
                     WriteLn();
                     isLogin := True;
                 end;
@@ -105,7 +104,7 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
-                    pinjam_buku(array_buku,array_pinjam,Pelaku.Nama); 
+                    pinjam_buku(array_buku,array_pinjam,Pelaku.Username); 
                     WriteLn();
                 end;
             'kembalikan_buku' :                                         
@@ -117,7 +116,7 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
-                    kembalikan_buku(array_buku,array_pinjam,array_kembali,Pelaku.Nama);
+                    kembalikan_buku(array_buku,array_pinjam,array_kembali,Pelaku.Username);
                     WriteLn();
                 end;
             'lapor_hilang' :
@@ -129,7 +128,7 @@ begin
                 end else begin
                     ClrScr;
                     WriteLn('================================================================================');
-                    bukuhilang(array_buku,array_hilang,Pelaku.Nama);
+                    bukuhilang(array_buku,array_hilang,Pelaku.Username);
                     WriteLn();
                 end;
             'lihat_laporan' :

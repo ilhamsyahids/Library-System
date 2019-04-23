@@ -13,7 +13,7 @@ implementation
 	
 	var
 		nama_user			: string;
-		i, n, j				: integer;
+		i, n				: integer;
 		ada : Boolean;
 	
 	begin
