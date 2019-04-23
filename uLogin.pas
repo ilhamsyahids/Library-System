@@ -37,7 +37,6 @@ implementation
                         WriteLn('Selamat datang ', array_user[i].nama, '!');
                         found := true;
                         role := array_user[i].Role;
-                        WriteLn(role);
                     end;
                     i := i+1;
                 end;
