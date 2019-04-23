@@ -10,11 +10,14 @@ uses
     uPinjamBuku,            // F05
     uPengembalianBuku,      // F06
     uBukuHilang,            // F07
+    uLaporanBukuHilang,     // F08
+    uTambahBukuBaru,        // F09
     uTambahJumlahBuku,      // F10
     uRiwayat,               // F11
     uStatistik,             // F12
     uLoadFile,              // F13
-    uSaveFile;              // F14
+    uSaveFile,              // F14
+    uCariAnggota;
 
 var
     array_buku : Arr_Buku;
@@ -126,7 +129,7 @@ begin
 
     currentUser := login(array_user);
 
-    bukuhilang(array_buku, array_hilang, currentUser);
+    cari_anggota(array_user);
 
     save_file(array_buku, array_user, array_peminjaman, array_pengembalian, array_hilang);
 end.
