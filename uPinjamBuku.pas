@@ -1,8 +1,9 @@
-{16518115/Muhammad Firas}
-{unit peminjaman buku}
-
 unit uPinjamBuku;
+{ Dibuat oleh Muhammad Firas (16518115)
+  Unit ini meminjam buku sesuai dengan id buku yang dimasukkan pengguna
+  F05 - Peminjaman Buku }
 
+{ KAMUS }
 interface
 
 uses
@@ -12,9 +13,13 @@ uses
 
 procedure pinjam_buku (var array_buku : Arr_Buku; var array_pinjam : Arr_Peminjaman ; nama_user : string);
 
-
+{ AlGORITMA }
 implementation
 procedure pinjam_buku (var array_buku : Arr_Buku; var array_pinjam : Arr_Peminjaman ; nama_user : string);
+{ Meminjam buku dengan memasukkan id dan tanggal buku tersebut dipinjam
+  variabel array_buku diisi dengan daftar buku pada program utama
+  variabel array_pinjam diisi dengan daftar peminjaman buku pada program utama
+  variabel nama_user digunakan untuk mengetahui pengguna yang akan meminjam buku }
 
 
 var
@@ -25,13 +30,13 @@ var
     stringtanggal : string;
     pinjam : Peminjaman;
 begin 
-    // Blok Input
+    { Blok Input }
     write('Masukkan id buku yang ingin dipinjam: ');
     readln(id);
     write('Masukkan tanggal hari ini: ');
     readln(stringtanggal);
 
-    // Blok proses (mencari id yang cocok, dan menambahkan jumlah buku)
+    { Blok proses (mencari id yang cocok, mencatat tanggal peminjaman buku, dan meminjam buku) }
     buku_yang_ditemukan := cari_buku_dengan_id(id, array_buku, index);
     if (buku_yang_ditemukan.jumlah_buku > 0) then begin
         tanggal1 := StringToTanggal(stringtanggal);
@@ -48,7 +53,7 @@ begin
         buku_yang_ditemukan.jumlah_buku := buku_yang_ditemukan.jumlah_buku - 1;
         array_buku[index] := buku_yang_ditemukan;
 
-        // Blok output
+        { Blok output }
         writeln('Buku ', buku_yang_ditemukan.judul_buku, ' berhasil dipinjam!');
         writeln('Tersisa ', buku_yang_ditemukan.jumlah_buku, ' buku ', buku_yang_ditemukan.judul_buku);
     end else begin

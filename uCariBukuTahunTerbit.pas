@@ -1,20 +1,20 @@
-{16518115/Muhammad Firas}
-{unit pencarian buku berdasarkan tahun terbit}
-
 unit uCariBukuTahunTerbit;
+{ Dibuat oleh Muhammad Firas (16518115)
+  Unit ini mencari buku berdasarkan kategori tahun buku tersebut diterbitkan
+  F04 - Peminjaman Buku }
 
-// Kamus
+{ KAMUS }
 interface
     uses uTipeData, uCari;
     procedure CariTahunTerbit(array_Buku : Arr_Buku);
 
-// Algoritma
+{ AlGORITMA }
 implementation
-    // Procedure cari buku berdasarkan kategori 
-    // menggunakan procedure sort array of string dari unit uCari
+    { Procedure cari buku berdasarkan kategori 
+      menggunakan procedure sort array of string dari unit uCari }
     procedure CariTahunTerbit(array_Buku : Arr_Buku);
-        // variabel array_buku diisi dengan daftar buku
-        // pada program utama
+        { variabel array_buku diisi dengan daftar buku
+          pada program utama }
         var
         	tahun : integer;
             jenis : string;
@@ -29,7 +29,7 @@ implementation
             n := Length(array_Buku);
             
             
-            // Skema validasi untuk input kategori
+            { Skema validasi untuk input kategori }
             repeat
             	write('Masukkan tahun: '); readln(tahun);
                 Write('Masukkan kategori: '); readln(jenis);
@@ -112,7 +112,7 @@ implementation
 
             
 
-            // Penampilan hasil pencarian
+            { Penampilan hasil pencarian }
             Writeln();
             WriteLn('Buku yang terbit ', jenis, ' ', tahun);
             sort_string(tahunbuku);

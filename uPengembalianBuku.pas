@@ -1,8 +1,9 @@
-{16518115/Muhammad Firas}
-{unit pengembalian buku}
-
 unit uPengembalianBuku;
+{ Dibuat oleh Muhammad Firas (16518115)
+  Unit ini mengembalikan buku yang telah dipinjam oleh pengguna
+  F06 - Pengembalian Buku }
 
+{ KAMUS }
 interface
 
 uses
@@ -13,10 +14,14 @@ uses
 
 procedure kembalikan_buku (var array_buku : Arr_Buku; var array_pinjam : Arr_Peminjaman; var array_kembali : Arr_Pengembalian; nama_user : string);
 
-
+{ AlGORITMA }
 implementation
 procedure kembalikan_buku (var array_buku : Arr_Buku; var array_pinjam : Arr_Peminjaman; var array_kembali : Arr_Pengembalian; nama_user : string);
-
+{ Mengembalikan buku yang telah dipinjam oleh pengguna dengan memasukkan id buku
+  variabel array_buku diisi dengan daftar buku pada program utama
+  variabel array_pinjam diisi dengan daftar peminjaman buku pada program utama
+  variabel array_kembali diisi dengan daftar pengembalian buku pada program utama
+  variabel nama_user digunakan untuk mengetahui pengguna yang akan mengembalikan buku }
 
 var
     buku_yang_ditemukan : Buku;
@@ -29,11 +34,11 @@ var
     haridenda : Integer;
 
 begin 
-    // Blok Input
+    { Blok Input }
     write('Masukkan id buku yang dikembalikan: ');
     readln(id);
 
-    // Blok proses (mencari id yang cocok, dan menambahkan jumlah buku)
+    { Blok proses (mencari id yang cocok, dan mengembalikan buku) }
     buku_yang_ditemukan := cari_buku_dengan_id(id, array_buku, idx);
     buku_yang_ditemukan.jumlah_buku := buku_yang_ditemukan.jumlah_buku + 1;
     array_buku[idx] := buku_yang_ditemukan;
@@ -48,13 +53,13 @@ begin
             idx := i;
             array_pinjam[i].Status_Pengembalian := 'sudah';
         end
-        else
+        else { (array_pinjam[i].Username <> nama_user) or (array_pinjam[i].ID_Buku <> id) }
         begin
             i := i + 1;
         end;
     end;
 
-    // Blok output
+    { Blok output }
     writeln('Data peminjaman:');
     writeln('Username: ', nama_user);
     writeln('Judul buku: ', buku_yang_ditemukan.judul_buku);
