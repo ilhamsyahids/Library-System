@@ -16,9 +16,17 @@ interface
 implementation
 
     procedure bukuhilang (var array_buku : Arr_Buku; var array_hilang : Arr_Laporan_Buku_Hilang; nama_user: String);
-    { Menambah buku hilang dengan input id, judul, serta
-    tanggal pelaporan buku yang hilang dengan array_hilang
-    sebagai array berisi daftar buku yang hilang }
+    { Prosedur untuk melaporkan buku hilang ke dalam sistem }
+    { I.S. Masukan berupa ID buku, judul buku, serta tanggal 
+    pelaporan buku yang hilang untuk dimasukkan ke dalam sistem }
+    { F.S. Laporan diterima dan dimasukkan ke dalam sistem
+    dengan pesan penerimaan sebagai penanda }
+
+    { Catatan :
+    array_hilang  : Daftar buku hilang yang akan 
+                    dimasukkan ke dalam sistem 
+    nama_user     : Username yang melaporkan buku hilang }
+
 
     var
         id_h, n         : integer;
