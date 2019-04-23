@@ -6,7 +6,7 @@ interface
 
     function hitunghari (tgl1, tgl2 : Tanggal) : Integer;
     { function untuk menghitung hari dari tgl1 dan tgl2 dengan tgl1,tgl2 adalah tipe bentukan Tanggal dan tgl2 lebih dahulu daripada tgl1. }
-    { I.S : dua buah tanggal}
+    { I.S : dua buah tanggal} 
     { F.S : integer hari diantara dua Tanggal }
 
 

@@ -8,8 +8,15 @@ unit uCari;
 interface
     uses uTipeData;
     procedure sort_string(array_string : Arr_String);
-    procedure Cari(array_Buku : Arr_Buku);
+    { Mengurutkan array string }
+	{ I.S. : Array of string } 
+	{ F.S. : array of string yang terurut}
 
+    procedure Cari(array_Buku : Arr_Buku);
+    { Mencari buku berdasarkan kategori dengan menggunakan procedure sort_string }
+	{ I.S. : Kategori buku yang dicari } 
+	{ F.S. : Buku dengan kategori tertentu dengan terurut berdasarkan judul }
+    
 // Algoritma
 implementation
     // Procedure sort array of string

@@ -3,6 +3,9 @@ unit uHashing;
 interface
   uses crt;
   procedure Inputpass(var Pass: String);
+  { Procedure Inputpass untuk membuat password saat diinput tidak terlihat}
+  { I.S : password }
+  { F.S : password menjadi '*' }
  
 
 implementation

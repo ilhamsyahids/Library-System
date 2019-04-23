@@ -1,5 +1,5 @@
 Program Main;
-{Program utama tubes}
+{Program utama}
 
 uses  
     crt,

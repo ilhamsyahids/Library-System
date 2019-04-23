@@ -6,6 +6,9 @@ interface
 	uses uTipeData;
 	
 	procedure cari_anggota (var cariUser : Arr_User);
+	{ Mencari anggota dengan username tertentu }
+	{ I.S. : Username anggota } 
+	{ F.S. : Nama dan Alamat anggota}
 
 // ALGORITMA
 implementation
