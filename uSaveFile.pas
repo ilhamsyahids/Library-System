@@ -18,11 +18,13 @@ implementation
 		data, data1, data2, data3	: string;
 		i, n						: integer;
 	begin
+		{ SAVE FILE BUKU }
 		write('Masukkan nama File Buku: ');
 		readln(nama_file);
 		assign(f, nama_file);
 		rewrite(f);
 		n := length(aBuku) - 1;
+		{ Generate string untuk tiap baris pada csv }
 		for i:=0 to n do
 		begin
 			str(aBuku[i].ID_Buku,data1); str(aBuku[i].Jumlah_Buku,data2); str(aBuku[i].Tahun_Penerbit,data3);
@@ -31,11 +33,13 @@ implementation
 		end;
 		close(f);
 		
+		{ SAVE FILE USER }
 		write('Masukkan nama File User: ');
 		readln(nama_file);
 		assign(f, nama_file);
 		rewrite(f);
 		n := length(aUser) - 1;
+		{ Generate string untuk tiap baris pada csv }
 		for i:=0 to n do
 		begin
 			data := aUser[i].Nama + ',' + aUser[i].Alamat + ',' + aUser[i].Username + ',' + aUser[i].Password + ',' + aUser[i].Role;
@@ -43,11 +47,13 @@ implementation
 		end;
 		close(f);
 
+		{ SAVE FILE PEMINJAMAN }
 		write('Masukkan nama File Peminjaman: ');
 		readln(nama_file);
 		assign(f, nama_file);
 		rewrite(f);
 		n := length(aPeminjaman) - 1;
+		{ Generate string untuk tiap baris pada csv }
 		for i:=0 to n do
 		begin
 			str(aPeminjaman[i].ID_Buku,data1);
@@ -57,11 +63,13 @@ implementation
 		end;
 		close(f);
 		
+		{ SAVE FILE PENGEMBALIAN }
 		write('Masukkan nama File Pengembalian: ');
 		readln(nama_file);
 		assign(f, nama_file);
 		rewrite(f);
 		n := length(aPengembalian) - 1;
+		{ Generate string untuk tiap baris pada csv }
 		for i:=0 to n do
 		begin
 			str(aPengembalian[i].ID_Buku,data1);
@@ -71,11 +79,13 @@ implementation
 		end;
 		close(f);
 		
+		{ SAVE FILE KEHILANGAN }
 		write('Masukkan nama File Buku Hilang: ');
 		readln(nama_file);
 		assign(f, nama_file);
 		rewrite(f);
 		n := length(aKehilangan) - 1;
+		{ Generate string untuk tiap baris pada csv }
 		for i:=0 to n do
 		begin
 			str(aKehilangan[i].ID_Buku_Hilang,data1);
