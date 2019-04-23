@@ -31,10 +31,12 @@ begin
     readln(username);
     writeln('Riwayat:');
 
+    { Looping untuk setiap peminjaman oleh username }
     for i := 0 to N-1 do
     begin
         if (array_peminjaman[i].username = username) then
         begin
+            { Blok Output }
             write(TanggalToString(array_peminjaman[i].tanggal_peminjaman));
             write(' | ');
             write(array_peminjaman[i].id_buku);
