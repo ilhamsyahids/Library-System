@@ -1,6 +1,6 @@
 unit uBukuHilang;
 { NIM / Nama    : 16518185 / Mohamad Alamsyah }
-{ unit uLaporanBukuHilang melihat laporan buku yang hilang,
+{ unit uBukuHilang melaporan buku yang hilang,
 seperti pada F07 - Melaporkan buku yang hilang }
 
 { KAMUS }

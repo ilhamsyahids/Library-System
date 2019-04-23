@@ -5,6 +5,9 @@ interface
     uses uTanggal;
 
     function hitunghari (tgl1, tgl2 : Tanggal) : Integer;
+    { function untuk menghitung hari dari tgl1 dan tgl2 dengan tgl1,tgl2 adalah tipe bentukan Tanggal dan tgl2 lebih dahulu daripada tgl1. }
+    { I.S : dua buah tanggal}
+    { F.S : integer hari diantara dua Tanggal }
 
 
 implementation
@@ -17,29 +20,36 @@ implementation
             if (m = 2) then begin
                 if IsKhabisat(tgl.Tahun) then begin
                     haridibulan := 29;    
-                end else begin
+                end else begin { Bukan kabisat }
                     haridibulan := 28;    
                 end;
             end else if (m = 1) or (m = 3) or (m = 5) or (m = 7) or (m = 8) or (m = 10) or (m = 12) then begin
                 haridibulan := 31;
-            end else begin
+            end else begin { Selain bulan diatas }
                 haridibulan := 30;    
             end;
         end;
 
     function hitungtahun(tgl : Tanggal) : Integer;
+    { function untuk menghitung hari dari tahun di tgl }
+    { I.S : satu buah tanggal}
+    { F.S : integer hari di tahun tgl }
+
         var
             i : Integer;
 
         begin
             if IsKhabisat(tgl.Tahun) then begin
                 hitungtahun := 366;
-            end else begin
+            end else begin { Bukan Kabisat }
                 hitungtahun := 365;
             end;
         end;
 
     function ToAkhirTahun(tgl : Tanggal): Integer;
+    { function untuk menghitung hari dari bulan hingga akhir tahun di tgl }
+    { I.S : satu buah tanggal}
+    { F.S : integer hari dari bulan hingga akhir tahun di tgl }
 
         var
             tahun : Integer;
@@ -70,7 +80,7 @@ implementation
                 for i:= tgl2.Tahun to tgl1.Tahun - 1 do begin
                     if IsKhabisat(i) then begin
                         tahun := tahun + 366;
-                    end else begin
+                    end else begin { Bukan Kabisat }
                         tahun := tahun + 365;
                     end;
                 end;
