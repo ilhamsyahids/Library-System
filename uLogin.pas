@@ -6,11 +6,11 @@ unit uLogin;
 // Kamus
 interface
     uses uTipeData, uHashing, uSHA3;
-    function login(array_user : Arr_User) : String;
+    function login(array_user : Arr_User; var role : String) : String;
 
 // Algoritma
 implementation
-    function login(array_user : Arr_User) : String;
+    function login(array_user : Arr_User; var role : String) : String;
     // Meminta authorization berupa username dan password dari pengakses
     // variabel array_user diisi dengan daftar user pada program utama
 
@@ -36,6 +36,8 @@ implementation
                     if (array_user[i].Username = username) and (array_user[i].Password = Generate224(password)) then begin
                         WriteLn('Selamat datang ', array_user[i].nama, '!');
                         found := true;
+                        role := array_user[i].Role;
+                        WriteLn(role);
                     end;
                     i := i+1;
                 end;
