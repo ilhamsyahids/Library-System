@@ -68,3 +68,8 @@ A: Pertama-tama, import pake `uses uTipeData;`, terus bikin prosedur yang bakal 
 
 **Q: Aku perlu print/simpan tanggal, gimana caranya ya?**
 A: Diawal kode, setelah tulis `unit uXXXX; implementation ...`, harus import / `uses uTanggal;` (sekalian import `uTipeData` kalo perlu). Terus kalo mau cetak tanggal (formatnya DD/MM/YYYY), pake fungsi `TanggalToString(<Tanggal>)`. Kalo mau buat data bentukan tanggal, pake fungsi `StringToTanggal(<String>)`, jangan lupa harus berformat DD/MM/YYYY.
+
+## Evaluasi
+
+- Pinjam satu buku, masa bisa kembalikan dua buku? masa bisa lapor hilang dua buku?
+- Bug uCari, uSave/uLoad
